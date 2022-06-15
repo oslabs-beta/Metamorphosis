@@ -3,29 +3,27 @@ import {
   Chart as ChartJS,
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend,
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 
+//need to import props
 ChartJS.register(
   CategoryScale,
   LinearScale,
-  PointElement,
-  LineElement,
+  BarElement,
   Title,
   Tooltip,
   Legend
 );
 
+const BarChart = ({options, data}) => {
 
-const LineGraph = ({options, data}) => {
-
-  /* options object form
+    /* options object form
     options = {
     responsive: true,
     plugins: {
@@ -40,32 +38,29 @@ const LineGraph = ({options, data}) => {
     };
 
   */
-
-
+  
   /* data object form
-    data= {
+    data: {
         //x-axis 
         labels: [],
-        //additional lines will be a new object in the dataset
+        //additional lines will be objects in the dataset array
         datasets:[{
-          //y-axis data
-          label: 'line1',
-          data: [],
-          //input line color
-          borderColor: 'rgb(255,255,255,0.5)',
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
+            //y-axis data
+            label: 'bar1',
+            data: []
+            //input line color
+            backgroundColor: 'rgba(53, 162, 235, 0.5)';
         }],
-
 
     }
 
   */
   return (
-    <Line
+    <Bar
       options={options}
-      data={data}
+      data={data} 
     />
   )
 }
 
-export default LineGraph;
+export default BarChart;
