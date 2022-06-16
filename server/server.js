@@ -10,7 +10,6 @@ app.use(cookieParser());
 
 
 app.get('/', (req, res) => {
-  console.log('test');
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
 });
 
