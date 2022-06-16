@@ -30,6 +30,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "axios": "^0.27.2",
     "chart.js": "^3.8.0",
+    "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
