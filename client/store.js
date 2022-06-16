@@ -1,11 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import journeySlice from './reducers/journeySlice';
-import userSlice from './reducers/userSlice';
+import connectSlice from './reducers/connectSlice';
 
 export default configureStore({
     reducer: {
-        users: userSlice,
-        journeys: journeySlice
-        
+        connect: connectSlice
     }
 })

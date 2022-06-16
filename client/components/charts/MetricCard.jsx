@@ -1,9 +1,5 @@
 import React, { useState } from "react";
 
-
-
-
-
 //data is the number value for the metric card
 //normalVal needs to be passed into the MetricCard. If the value is greater than normalVal, render in red
 const MetricCard = ({data, normalVal}) => {
