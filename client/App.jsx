@@ -9,7 +9,7 @@ const App = () => {
   const connectIO = () => {
     socket.connect(); 
 
-    socket.on("kafka_controller_controllerstats_autoleaderbalancerateandtimems",(data)=>{
+    socket.on("data", (data)=>{
       console.log('incoming message: ',data)
     })
   }

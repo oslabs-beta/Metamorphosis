@@ -1,6 +1,7 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const axios = require('axios');
+const {query, queries} = require('./queries');
 const app = express();
 const PORT = 3000;
 const httpServer = require("http").createServer();
@@ -14,31 +15,12 @@ app.use(express.json());
 app.use(express.urlencoded());
 app.use(cookieParser());
 
-//what metrics do we need and how often do we have to pull it from Prometheus?
-
 io.on('connection', socket => {
   console.log('client connected');  
-  
-  let data;
-  
-  function test(){
-    axios.get('http://localhost:9090/api/v1/query',{ 
-      params: {
-        query: 'kafka_controller_controllerstats_autoleaderbalancerateandtimems'
-      }})
-    .then(res => res.data)
-    .then(res => {
-      const array = [];
-      res.data.result.forEach(x=>array.push(x.value));
-      data = array;
-      socket.emit("kafka_controller_controllerstats_autoleaderbalancerateandtimems", 
-      data);
-    })
-    .catch(err => console.log(err.code))
-  }
-  setInterval(test, 5000);
-})
+  //moved the function to the queries.js but right now socket io doesn't work from there, so the page is not updated
+  setInterval(query, 5000);
 
+})
 
 app.get('/', (req, res) => {
   console.log('connect')
