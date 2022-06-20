@@ -18,10 +18,22 @@ function query(socket){
       }})
       .then(res =>res.data) 
       .then(res => {
-        //console.log('incoming data in qieries.js',res.data.result);
-        // const array = [];
-        // res.data.result.forEach(x=>array.push(x));
+        // res.data.result is an array. Here's an example: 
+        // "result": [
+        //   {
+        //       "metric": {
+        //           "__name__": "kafka_server_brokertopicmetrics_bytesin_total",
+        //           "instance": "172.31.1.31:8080",
+        //           "job": "kafka"
+        //       },
+        //       "value": [
+        //           1655748501.005,
+        //           "75672"
+        //       ]
+        //   },...]
+
         for (let i = 0; i < res.data.result.length; i++) {
+
           queries[key].push(res.data.result[i].value[0]);
         }
         
