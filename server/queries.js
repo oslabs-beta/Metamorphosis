@@ -33,8 +33,10 @@ function query(socket){
         //   },...]
 
         for (let i = 0; i < res.data.result.length; i++) {
-
-          queries[key].push(res.data.result[i].value[0]);
+          queries[key].push({
+            x: res.data.result[i].value[0],
+            y: res.data.result[i].value[1]
+          });
         }
         
         console.log('after updating', queries)
