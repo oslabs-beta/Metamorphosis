@@ -17,8 +17,7 @@ app.use(cookieParser());
 
 io.on('connection', socket => {
   console.log('client connected');  
-  //moved the function to the queries.js but right now socket io doesn't work from there, so the page is not updated
-  setInterval(query, 5000);
+  setInterval(query, 5000, socket);
 
 })
 
@@ -49,4 +48,4 @@ httpServer.listen(PORT, ()=>{
   console.log(`Server listening on port: ${PORT}`)
 });
 
-
+module.exports = {io};

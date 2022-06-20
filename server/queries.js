@@ -8,7 +8,7 @@ const queries = {
   kafka_server_brokertopicmetrics_bytesout_total: []
 }
 
-function query(){
+function query(socket){
   let query_val;
   for (const [key, value] of Object.entries(queries)) {
     query_val = key;
@@ -22,7 +22,7 @@ function query(){
         // const array = [];
         // res.data.result.forEach(x=>array.push(x));
         for (let i = 0; i < res.data.result.length; i++) {
-           queries[key].push(res.data.result[i].value[0]);
+          queries[key].push(res.data.result[i].value[0]);
         }
         
         console.log('after updating', queries)
