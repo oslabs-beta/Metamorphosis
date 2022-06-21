@@ -12,21 +12,11 @@ import Broker from './BrokerDashboard/Broker';
 
 let ip = '184.72.70.17:9090';
 const App = () => {
-
-  const connectIO = () => {
-    socket.connect(); 
-    socket.on("data", (data)=>{
-      console.log('incoming message: ',data)
-    })
-    socket.emit("ip", ip);
-  }
   
   return (
     <Router>
       <nav>
         <Sidebar />
-        <label>Kafka IP:<input type="text" name="name" required/></label>
-        <button onClick={connectIO}>connect</button>
       </nav>
       <Routes>
         <Route path="/" element={<Connection />}/> 

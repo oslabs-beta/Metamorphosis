@@ -63,33 +63,40 @@ const Connection = () => {
     } else if (!isPort(port)){
       setPortError(true);
     } else {
-        const connect = async () => {
-          try {
-            const sendConnect = await axios.post('http://localhost:3000/connect', connection);
+        // const connect = async () => {
+        //   try {
+        //     const sendConnect = await axios.post('http://localhost:3000/connect', connection);
             
-            if(sendConnect.data){
-              const { ipaddress, port } = sendConnect.data;
-              console.log('response obj', sendConnect.data)
-              console.log(typeof address);
-              dispatch(connectAddress({ipaddress, port}));
-            }
+        //     if(sendConnect.data){
+        //       const { ipaddress, port } = sendConnect.data;
+        //       console.log('response obj', sendConnect.data)
+        //       console.log(typeof address);
+        //       dispatch(connectAddress({ipaddress, port}));
+        //     }
 
-          } catch (err){
-            setConnectError(true);
-            console.log(err);
-          }
-        }
+        //   } catch (err){
+        //     setConnectError(true);
+        //     console.log(err);
+        //   }
+        // }
 
-        connect();
+        // connect();
+        
+          socket.connect(); 
+          socket.on("data", (data)=>{
+            if(data) dispatch(connectAddress({ipaddress, port}));
+            console.log('incoming message: ',data)
+          })
+          socket.emit("ip", `${ipaddress}:${port}`);
 
             //reset form data
+
+    }
+
     setConnection({
       ipaddress:'',
       port:''
     })
-    }
-
-
   }
 
   return (
