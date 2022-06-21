@@ -22,39 +22,11 @@ ChartJS.register(
 );
 
 
-/*
-options object form
-options = {
-  responsive: true,
-  interaction: {
-    mode: 'index',
-    intersect: false,
-  },
-  stacked: false,
-  plugins: {
-    title: {
-      display: true,
-      text: 'MultiAxis Chart',
-    },
-  },
-  scales: {
-    y: {
-      type: 'linear',
-      display: true,
-      position: 'left',
-    },
-    y1: {
-      type: 'linear',
-      display: true,
-      position: 'right',
-      grid: {
-        drawOnChartArea: false,
-      },
-    },
-  },
-};
 
-*/
+// options object form
+
+
+
 
 
 
@@ -84,7 +56,43 @@ data = {
   };
 */
 
-const MultiaxisLine = ({options, data}) => {
+const MultiaxisLine = ({title, data}) => {
+
+  const options = {
+    responsive: true,
+    interaction: {
+      mode: 'index',
+      intersect: false,
+    },
+    stacked: false,
+    plugins: {
+      title: {
+        display: true,
+        text: title,
+      },
+    },
+    scales: {
+      y: {
+        type: 'linear',
+        display: true,
+        position: 'left',
+      },
+      y1: {
+        type: 'linear',
+        display: true,
+        position: 'right',
+        grid: {
+          drawOnChartArea: false,
+        },
+      },
+    },
+  };
+
+
+
+
+
+
   return (
     <Line 
       options={options}

@@ -22,44 +22,38 @@ ChartJS.register(
   Legend
 );
 
+// const LineGraph = ({options, data}) => {
+const LineGraph = ({graphProps}) => {
+  const { title, x, y } = graphProps;
 
-const LineGraph = ({options, data}) => {
-
-  /* options object form
-    options = {
+  const options = {
     responsive: true,
     plugins: {
         legend: {
-        position: 'top' as const,
+        position: 'top',
         },
         title: {
         display: true,
-        text: 'Title Goes Here',
+        text: title
         },
     },
-    };
+  };
 
-  */
+  const data = {
+    //x-axis 
+    labels: x,
+    //additional lines will be a new object in the dataset
+    datasets:[{
+      //y-axis data
+      label: 'line1',
+      data: y,
+      //input line color
+      borderColor: 'rgb(255,255,255,0.5)',
+      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+    }],
 
-
-  /* data object form
-    data= {
-        //x-axis 
-        labels: [],
-        //additional lines will be a new object in the dataset
-        datasets:[{
-          //y-axis data
-          label: 'line1',
-          data: [],
-          //input line color
-          borderColor: 'rgb(255,255,255,0.5)',
-          backgroundColor: 'rgba(53, 162, 235, 0.5)',
-        }],
-
-
-    }
-
-  */
+  }  
+    
 
   return (
     <Line
