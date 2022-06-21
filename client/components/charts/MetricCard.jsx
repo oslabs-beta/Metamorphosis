@@ -4,10 +4,11 @@ import React, { useState } from "react";
 //normalVal needs to be passed into the MetricCard. If the value is greater than normalVal, render in red
 const MetricCard = ({data, normalVal}) => {
 
+    console.log('inMetric card', data<=normalVal);
     return (
-        <div>
-            <h1>Metric</h1>
-            {data <= normalVal? <p >data</p>:<p style={{color:"#FF3D2E"}}>data</p>}
+        <div className="metric-card">
+            <h1>{data.title}</h1>
+            {data.value <= normalVal? <p >{data.value}</p>:<p style={{color:"#FF3D2E"}}>{data.value}</p>}
         </div>
     )
 };
