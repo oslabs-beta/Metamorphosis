@@ -8,15 +8,18 @@ const queries = {
   kafka_server_brokertopicmetrics_bytesout_total: []
 }
 
-function query(socket){
+function query(socket, ip = 'localhost:9090'){
   let query_val;
   for (const [key, value] of Object.entries(queries)) {
     query_val = key;
-    axios.get('http://localhost:9090/api/v1/query',{ 
+    axios.get(`http://${ip}/api/v1/query`,{ 
       params: {
         query: key,
       }})
-      .then(res =>res.data) 
+      .then(res =>{
+        // console.log(res.data);
+        return res.data;
+      }) 
       .then(res => {
         // res.data.result is an array. Here's an example: 
         // "result": [
@@ -35,11 +38,11 @@ function query(socket){
         for (let i = 0; i < res.data.result.length; i++) {
           queries[key].push({
             x: res.data.result[i].value[0],
-            y: res.data.result[i].value[1]
+            y: Number(res.data.result[i].value[1])
           });
         }
         
-        console.log('after updating', queries)
+        // console.log('after updating', queries)
         socket.emit("data", queries);
       })
       .catch(err => console.log(err.code))
