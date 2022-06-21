@@ -1,0 +1,53 @@
+version: "2"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:latest
+    ports:
+      - "2181:2181"
+    volumes:
+      - /Users/chrisxesq/codesmith/OSP/zk:/bitnami/kafka
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - app-tier
+  kafka:
+    image: docker.io/bitnami/kafka:latest
+    ports:
+      - "9093:9093"
+      - "1234:1234"
+    volumes:
+      - /Users/chrisxesq/codesmith/OSP/kf:/bitnami
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - METRICS_KAFKA_ENABLED=true
+      - KAFKA_JMX_OPTS=-javaagent:/bitnami/jmx/jmx_prometheus_javaagent-0.17.0.jar=1234:/bitnami/jmx/config.yml
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+    depends_on:
+      - zookeeper
+    networks:
+      - app-tier
+
+  prometheus:
+    image: docker.io/bitnami/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - /Users/chrisxesq/codesmith/OSP/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+    networks:
+      - app-tier
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
