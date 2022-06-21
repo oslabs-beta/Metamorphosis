@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { connectAddress, selectIpaddress } from '../reducers/connectSlice'
 import axios from 'axios';
-
+import socket from '../socket';
 
 const Connection = () => {
   const dispatch = useDispatch();
@@ -81,12 +81,19 @@ const Connection = () => {
         // }
 
         // connect();
-        
+          console.log('clicked',ipaddress, port);
           socket.connect(); 
-          socket.on("data", (data)=>{
-            if(data) dispatch(connectAddress({ipaddress, port}));
-            console.log('incoming message: ',data)
-          })
+
+          socket.on("queries_chart", (queries_chart)=>{
+            if(queries_chart) dispatch(connectAddress({ipaddress, port}));
+            console.log('incoming message: ',queries_chart)
+          });
+
+          socket.on("queries_count", (queries_count)=>{
+            if(queries_count) dispatch(connectAddress({ipaddress, port}));
+            console.log('incoming message: ',queries_count)
+          });
+
           socket.emit("ip", `${ipaddress}:${port}`);
 
             //reset form data
