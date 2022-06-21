@@ -9,9 +9,9 @@ module.exports = {
     './client/index.js',
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.resolve(__dirname, '/dist'),
     filename: 'bundle.js',
-    // publicPath: 'dist'
+    publicPath: '/'
   },
   devtool: 'eval-source-map',
   mode: 'development',
@@ -26,7 +26,7 @@ module.exports = {
       // match the output path
       directory: path.resolve(__dirname, 'dist'),
       // // match the output 'publicPath'
-      // publicPath: '/dist',
+      publicPath: '/',
     },
 
     headers: { 

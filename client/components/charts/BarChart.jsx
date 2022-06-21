@@ -21,7 +21,8 @@ ChartJS.register(
   Legend
 );
 
-const BarChart = ({options, data}) => {
+// const BarChart = ({options, data}) => {
+const BarChart = () => {
 
     /* options object form
     options = {
@@ -47,14 +48,41 @@ const BarChart = ({options, data}) => {
         datasets:[{
             //y-axis data
             label: 'bar1',
-            data: []
+            data: [],
             //input line color
-            backgroundColor: 'rgba(53, 162, 235, 0.5)';
+            backgroundColor: 'rgba(53, 162, 235, 0.5)'
         }],
 
     }
 
   */
+  const options = {
+    responsive: true,
+    plugins: {
+        legend: {
+        position: 'top'
+        },
+        title: {
+        display: true,
+        text: 'Title Goes Here',
+        },
+    },
+  }
+
+
+  const data = {
+    //x-axis 
+    labels: [1, 2, 3, 4, 5],
+    //additional lines will be objects in the dataset array
+    datasets:[{
+        //y-axis data
+        label: 'bar1',
+        data: [15, 20, 14, 53],
+        //input line color
+        backgroundColor: 'rgba(53, 162, 235, 0.5)'
+    }],
+  }
+
   return (
     <Bar
       options={options}
