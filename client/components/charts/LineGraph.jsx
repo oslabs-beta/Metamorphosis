@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -60,6 +60,7 @@ const LineGraph = ({options, data}) => {
     }
 
   */
+
   return (
     <Line
       options={options}
