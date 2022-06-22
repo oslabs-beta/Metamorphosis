@@ -43,7 +43,7 @@ function query(socket, ip = 'localhost:9090'){
         }
         
         // console.log('after updating', queries)
-        socket.emit("data", queries);
+        //socket.emit("data", queries);
       })
       .catch(err => console.log(err.code))
     }

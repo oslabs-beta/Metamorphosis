@@ -81,7 +81,7 @@ const Connection = () => {
         // }
 
         // connect();
-          console.log('clicked',ipaddress, port);
+          
           socket.connect(); 
 
           socket.on("queries_chart", (queries_chart)=>{
@@ -93,7 +93,7 @@ const Connection = () => {
             if(queries_count) dispatch(connectAddress({ipaddress, port}));
             console.log('incoming message: ',queries_count)
           });
-
+          socket.emit("interval", "15");
           socket.emit("ip", `${ipaddress}:${port}`);
 
             //reset form data

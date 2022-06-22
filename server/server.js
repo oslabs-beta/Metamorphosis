@@ -1,5 +1,6 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const axios = require('axios');
 const {query, queries} = require('./queries');
 const app = express();
@@ -18,10 +19,16 @@ app.use(cookieParser());
 
 io.on('connection', socket => {
   console.log('client connected');  
+  socket.on("interval", interval => {
+    console.log(interval);
+  })
+
   socket.on("ip", ip => {
-    setInterval(query, 5000, socket, ip);
+    console.log('here', ip)
+    // setInterval(query, 5000, socket, ip);
   })
 })
+
 app.get('/', (req, res) => {
   console.log('connect')
   return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
