@@ -1,4 +1,4 @@
-function unixTimeStamptoTime(unix_timestamp){
+const unixTimeStamptoTime = (unix_timestamp) => {
   // Create a new JavaScript Date object based on the timestamp
   // multiplied by 1000 so that the argument is in milliseconds, not seconds.
   const date = new Date(unix_timestamp * 1000);
@@ -14,4 +14,5 @@ function unixTimeStamptoTime(unix_timestamp){
   return formattedTime;
 }
 
-module.exports = {unixTimeStamptoTime};
+
+export default unixTimeStamptoTime;

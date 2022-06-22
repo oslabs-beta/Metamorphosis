@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { connectAddress, selectIpaddress } from '../reducers/connectSlice'
-import axios from 'axios';
+import { connectAddress, selectIpaddress } from '../reducers/connectSlice';
 import socket from '../socket';
+// import { SocketContext } from '../socket';
 
 const Connection = () => {
   const dispatch = useDispatch();
   const ip = useSelector(selectIpaddress);
+  // const socket = useContext(SocketContext);
   
   //set state of connection form
   const [connection, setConnection] = useState({
@@ -62,43 +63,24 @@ const Connection = () => {
       setIpError(true);
     } else if (!isPort(port)){
       setPortError(true);
-    } else {
-        // const connect = async () => {
-        //   try {
-        //     const sendConnect = await axios.post('http://localhost:3000/connect', connection);
-            
-        //     if(sendConnect.data){
-        //       const { ipaddress, port } = sendConnect.data;
-        //       console.log('response obj', sendConnect.data)
-        //       console.log(typeof address);
-        //       dispatch(connectAddress({ipaddress, port}));
-        //     }
+    } else {         
+        socket.connect(); 
 
-        //   } catch (err){
-        //     setConnectError(true);
-        //     console.log(err);
-        //   }
-        // }
+        // socket.on("queries_chart", (queries_chart)=>{
+        //   if(queries_chart) dispatch(connectAddress({ipaddress, port}));
+        //   console.log('incoming message: ',queries_chart)
+        // });
 
-        // connect();
-          
-          socket.connect(); 
+        socket.on("data", (data)=>{
+          if(data) dispatch(connectAddress({ipaddress, port}));
+        });
+        socket.emit("ip", `${ipaddress}:${port}`);
 
-          // socket.on("queries_chart", (queries_chart)=>{
-          //   if(queries_chart) dispatch(connectAddress({ipaddress, port}));
-          //   console.log('incoming message: ',queries_chart)
-          // });
 
-          socket.on("data", (data)=>{
-            if(data) dispatch(connectAddress({ipaddress, port}));
-            console.log('incoming message: ',data)
-          });
-          socket.emit("ip", `${ipaddress}:${port}`);
-
-            //reset form data
 
     }
-
+    
+    //reset form data
     setConnection({
       ipaddress:'',
       port:''
@@ -107,47 +89,45 @@ const Connection = () => {
 
   return (
     <div className="home">
-          {/* <label>Kafka IP:<input type="text" name="name" required/></label>
-    <button onClick={connectIO}>connect</button> */}
       
       {!ip?
       <div className="home-form">
-      <form className="connect-form" onSubmit={handleConnect}>
-        <div className="connect-inputs">
-          <label htmlFor="ipaddress" className="ip-label">IP Address: </label>
-          <input 
-              id="ipaddress"
-              type="text" 
-              name="ipaddress" 
-              className="ip-input" 
-              placeholder="Enter your IP address"                        
-              value={connection.ipaddress}
-              onChange={onConnect}
-          />
-        </div>
+        <form className="connect-form" onSubmit={handleConnect}>
+          <div className="connect-inputs">
+            <label htmlFor="ipaddress" className="ip-label">IP Address: </label>
+            <input 
+                id="ipaddress"
+                type="text" 
+                name="ipaddress" 
+                className="ip-input" 
+                placeholder="Enter your IP address"                        
+                value={connection.ipaddress}
+                onChange={onConnect}
+            />
+          </div>
 
-        <div className="connect-inputs">
-          <label htmlFor="port" className="port-label">PORT: </label>
-          <input 
-              id="port"
-              type="text" 
-              name="port" 
-              className="port-input" 
-              placeholder="Enter your PORT"
-              value={connection.port}
-              onChange={onConnect}
-          />
-        </div>
-        <div className="form-input-btn">
-          <button className="connect-form-btn" type="submit">Connect</button>
-        </div>
-        {(ipError && portError)? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address and PORT</p>
-        : ipError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address</p>
-        : portError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid PORT</p> 
-        : connectError? <p className="Error" style={{color:"#FF3D2E"}}>Unable to connect</p>
-        : null
-        }
-    </form>
+          <div className="connect-inputs">
+            <label htmlFor="port" className="port-label">PORT: </label>
+            <input 
+                id="port"
+                type="text" 
+                name="port" 
+                className="port-input" 
+                placeholder="Enter your PORT"
+                value={connection.port}
+                onChange={onConnect}
+            />
+          </div>
+          <div className="form-input-btn">
+            <button className="connect-form-btn" type="submit">Connect</button>
+          </div>
+          {(ipError && portError)? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address and PORT</p>
+          : ipError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address</p>
+          : portError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid PORT</p> 
+          : connectError? <p className="Error" style={{color:"#FF3D2E"}}>Unable to connect</p>
+          : null
+          }
+      </form>
     </div>
     : 
     <div className="form-input-btn">

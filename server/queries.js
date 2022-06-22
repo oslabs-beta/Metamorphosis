@@ -27,9 +27,9 @@ let ipInCache = {ip: null};
 
 function query(socket, ip){
   // temporarily rerout to local host to save AWS cost
-  ip = 'localhost:9090';
+  // ip = 'localhost:9090';
   ipInCache.ip = ip;
-  
+
     
   // these new key/value pairs to queries and emit it back to the frontend
   // calling query_count and update the queries_count, then assign 
