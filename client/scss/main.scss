@@ -9,45 +9,35 @@
 	padding: 0;
 }
 
-ul {
-	padding: 0;
-	margin: 0;
-}
-
-li{
-	list-style: none;
-}
-//great job // good night
 body{
 	background-color: rgb(29, 32, 37);
 	font-family: 'Montserrat', sans-serif;
 }
 
-
-//page settings
-.home, 
-.broker,
-.producer,
-.consumer {
+main{
 	display: flex;
-	margin: 30 30 30 220;
-  height: 90vh;
-	padding-top: 5;
-	padding-left: 5;
-  font-size: 1rem;
+}
+
+.home, .consumer, .producer{
+	display: flex;
+	height: 100vh;
+	margin-left: 20;
+	margin-right: 20;
 }
 
 //Home directory
 .home{
+	width: 80vw;
+	display: flex;
 	align-items: center;
 	justify-content: center;
+
 }
 
 .connect-form{
 	display: flex;
 	flex-flow: column nowrap;
-	align-items: center;
-
+	// align-items: center;
 }
 
 .connect-inputs{
@@ -89,5 +79,9 @@ label{
 
 
 
-
+// broker directory
+.broker {
+	// flex-grow: 1;
+	margin: 30;
+}
 
