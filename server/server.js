@@ -20,10 +20,10 @@ app.use(cookieParser());
 io.on('connection', socket => {
   console.log('client connected');  
 
-  socket.on("interval", interval => {
+  socket.on("range", range => {
 
     //passing down ip using closure in the queries.js file
-    query_chart(socket, ip = ipInCache, interval);
+    query_chart(socket, ip = ipInCache, range);
     
   })
 
