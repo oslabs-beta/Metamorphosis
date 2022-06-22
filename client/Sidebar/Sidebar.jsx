@@ -1,46 +1,40 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png' 
 import { SidebarItems } from './SidebarItems';
+import HomeIcon from '@mui/icons-material/Home';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import StreamIcon from '@mui/icons-material/Stream';
+import MoveToInboxIcon from '@mui/icons-material/MoveToInbox';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { v4 as uuidv4 } from 'uuid';
-
-const Sidebar = () => {
-	// const [toggle, setToggle] = useState(false);
-
-	// const toggleSidebar = () => setToggle(!toggle);
-
-	const navItems = SidebarItems.map((item, i) => {
-		return (
-			<li className="nav-item" key={uuidv4()}>
-				<Link className="nav-link" to={item.path}>
-					{item.icon}
-					<p className='nav-title'>{item.title}</p>
-					{/* {toggle? null: <p className='nav-title'>{item.title}</p>} */}
-					{/* <span className="nav-span">{item.title}</span> */}
-				</Link>
-			</li>
-		)
-	});
+import { NavLink } from 'react-router-dom';
 
 
-	return (
-		<div className="sidebar">
-		{/* <div className={toggle? "sidebar-collapse": "sidebar"}> */}
-			<div className="nav-header">
+const Sidebar = ({children}) => {
+    const[isOpen ,setIsOpen] = useState(true);
+    const toggle = () => setIsOpen (!isOpen);
 
-			{/* {toggle? <ArrowForwardIosIcon onClick={toggleSidebar}/> : <ArrowBackIosIcon className="collapse-icon" onClick={toggleSidebar}/>} */}
-			{/* {toggle? null: <img className="sidebar-logo" src={logo} />} */}
-			<img className="sidebar-logo" src={logo} />
-			</div>
-			<nav className="main-nav">
-				<ul className="nav-items" >
-					{navItems}
-				</ul>
-			</nav>
-		</div>
-	)
-}
+    return (
+        <div className="container">
+           <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+               <div className="nav-header">
+                   <img style={{display: isOpen ? "block" : "none"}} className="logo" src={logo} alt="logo"/>
+                   <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="collapse-icon">
+                       {isOpen? <ArrowBackIosIcon onClick={toggle}/> : <ArrowForwardIosIcon onClick={toggle}/>}
+                   </div>
+               </div>
+               {
+                   SidebarItems.map((item, index)=>(
+                       <NavLink to={item.path} key={index} className="nav-link" activeclassName="active">
+                           <div className="icon">{item.icon}</div>
+                           <div style={{display: isOpen ? "block" : "none"}} className="nav-title">{item.title}</div>
+                       </NavLink>
+                   ))
+               }
+           </div>
+           <main>{children}</main>
+        </div>
+    );
+};
 
 export default Sidebar;

@@ -1,112 +1,51 @@
-// sidebar styling
+*{
+	margin:0;
+	padding:0;
+	text-decoration: none;
+}
+.container{
+	display:flex;
+}
+
 .sidebar{
-	position: fixed;
+	background: rgba(16, 42, 67);
+	color: #fff;
+	// position: sticky;
 	top: 0;
 	bottom: 0;
-	padding: 20px;;
-	background: rgba(16, 42, 67);
-	width: 150px;
-	height: 100vh;
-	margin-right: 30px;
-
-	.sidebar-logo{
-		max-width: 70%;
-		top: 50;
-	}
-
-
-	.nav-header{
-		color: white;
-		margin-top: 20px;
-		margin-bottom: 90px;
-		display: flex;
-		flex-flow: column;
-		justify-content: center;
-		align-items: center;
-
-		.collapse-icon{
-			align-self: end;
-		}
-
-	}
-	
-	.nav-item{
-		display: flex;
-		flex-flow: row wrap;
-		align-items: center;
-		margin:30 0 30 15;
-		
-		.nav-link{
-			display: flex;
-			text-decoration: none;
-			color: white;
-			align-items: center;
-		
-			&:hover{
-				color: rgb(126, 124, 123);
-			}
-
-
-		}
-		
-		.nav-title{
-			margin-left: 10px;
-		}
-		.nav-span{
-			margin-left: 10px;
-		}
-	}
 }
 
-.sidebar-collapse{
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	padding: 20px;;
-	background: rgba(16, 42, 67);
-	width: 50px;
-	height: 100vh;
-	margin-right: 30px;
+.nav-header{
+	display: flex;
+	align-items:center;
+	padding:20px 15px;
+}
+.logo{
+	max-width: 50%;
+}
+.collapse-icon{
+	display: flex;
+	font-size: 25px;
+	margin-left: 50px;
+}
 
-	.sidebar-logo{
-		max-width: 70%;
-		visibility: hidden;
+.nav-link{
+	display: flex;
+	color: #fff;
+	padding: 10px 15px;
+	gap: 15px;
+	transition: all 0.5s;
+
+	&:hover{
+		// background:lightskyblue;
+		color: rgb(126, 124, 123);
+		transition: all 0.5s;
 	}
 
-
-	.nav-header{
-		color: white;
-		margin-bottom: 208px;
-		display: flex;
-		flex-flow: column;
-		justify-content: center;
-		align-items: center;
-		margin-top: 20px;
-		// margin:30 0 30 15;
+	.active{
+		background: rgb(100, 131, 192);
+		color: #000;
 	}
 	
-	.nav-item{
-		display: flex;
-		flex-flow: row wrap;
-		align-items: center;
-		margin:30 0 30 15;
-		
-		.nav-link{
-			display: flex;
-			text-decoration: none;
-			color: white;
-			align-items: center;
-		
-			&:hover{
-				color: rgb(126, 124, 123);
-			}
-		}
-		
-		.nav-title{
-			margin-left: 10px;
-		}
-		.nav-span{
-			margin-left: 10px;
-		}
-	}
 }
+
