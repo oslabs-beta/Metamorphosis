@@ -1,3 +1,7 @@
+@import 'sidebar';
+
+@import 'metric';
+
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 * {
@@ -13,35 +17,77 @@ ul {
 li{
 	list-style: none;
 }
-
+//great job // good night
 body{
-	background-color: #eee;
+	background-color: rgb(29, 32, 37);
 	font-family: 'Montserrat', sans-serif;
 }
 
-.sidebar{
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	background: black;
-	width: 200px;
-	height: 100vh;
-}
 
+//page settings
 .home, 
 .broker,
 .producer,
 .consumer {
-  display: flex;
-	margin-left: 200px;
+	display: flex;
+	margin: 30 30 30 220;
   height: 90vh;
-  // align-items: center;
-  // justify-content: center;
 	padding-top: 5;
 	padding-left: 5;
   font-size: 1rem;
 }
 
-.metric-card{
-	border: 1px solid white;
+//Home directory
+.home{
+	align-items: center;
+	justify-content: center;
 }
+
+.connect-form{
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+
+}
+
+.connect-inputs{
+	display: flex;
+	flex-flow: column nowrap;
+	justify-content: center;
+	margin: 5 0 5 0;
+}
+
+label{
+	color: rgb(175, 219, 225);
+	margin-right: 5px;
+	align-self: center;
+}
+
+.form-input-btn{
+	align-self: center;
+}
+
+.connect-form-btn{
+	width: 150px;
+	height: 30px;
+	font-size: 1rem;
+	border: 0.1rem solid white;
+	border-radius: 0.3rem;
+	background-color: rgba(16, 42, 67);
+	color: white;
+	margin: 20 0 20 0;
+
+	&:hover{
+		border: 0.1rem solid rgb(126, 124, 123);
+		color: rgb(126, 124, 123);
+	}
+}
+
+.Error {
+	align-self: center;
+}
+
+
+
+
+
