@@ -89,9 +89,9 @@ const Connection = () => {
           //   console.log('incoming message: ',queries_chart)
           // });
 
-          socket.on("queries_count", (queries_count)=>{
-            if(queries_count) dispatch(connectAddress({ipaddress, port}));
-            console.log('incoming message: ',queries_count)
+          socket.on("data", (data)=>{
+            if(data) dispatch(connectAddress({ipaddress, port}));
+            console.log('incoming message: ',data)
           });
           socket.emit("ip", `${ipaddress}:${port}`);
 

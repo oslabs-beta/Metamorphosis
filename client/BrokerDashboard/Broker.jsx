@@ -7,7 +7,7 @@ import socket from '../socket';
 
 const BrokerDisplay = () => {
 	function clickme(){
-		socket.emit("interval", "15");
+		socket.emit("interval", '360');
 	}
 	
 	return (
