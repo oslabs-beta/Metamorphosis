@@ -1,9 +1,6 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import axios from 'axios';
-import socket from "./socket";
-import Connection from './ConnectionPage/Connection';
+import Connection from './ConnectionPage/Connection'
 import Sidebar from './Sidebar/Sidebar';
 // import Broker from './pages/Broker';
 import Consumer from './pages/Consumer';
@@ -15,11 +12,12 @@ const App = () => {
   
   return (
     <Router>
-      <nav>
+      <nav className="navbar">
         <Sidebar />
       </nav>
       <Routes>
         <Route path="/" element={<Connection />}/> 
+        {/* <Route path="/" element={ <Broker/> }/>   */}
         <Route path="/broker" element={ <Broker/> }/>  
         <Route path="/producer" element={ <Producer /> }/> 
         <Route path="/consumer" element={ <Consumer /> }/> 
