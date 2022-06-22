@@ -2,11 +2,15 @@ import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import Grid from '@mui/material/Grid';
 import MetricCard from '../components/charts/MetricCard'
-import LineGraph from '../components/charts/LineGraph';
+import socket from '../socket';
 
 
 const BrokerDisplay = () => {
-
+	
+	function clickme(){
+		socket.emit("range", '360');
+	}
+	
 	const insyncReplica = {
 		title: 'In-Sync Replica Count',
 		value: 1
@@ -38,9 +42,12 @@ const BrokerDisplay = () => {
 		y: [1, 3, 5, 6, 8]
 	}
 
-
 	return (
+		<>
 		<div className='broker'>
+			<div>
+				<button onClick={clickme}>TestButton</button>
+			</div>
 			<Grid container spacing={2}>
 				<Grid item xs={3}>
 				  <MetricCard data={insyncReplica} normalVal={2}/>
@@ -68,6 +75,7 @@ const BrokerDisplay = () => {
 				</Grid>
 			</Grid>
 		</div>
+		</>
 	)
 }
 
