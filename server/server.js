@@ -1,7 +1,8 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
+const path = require('path');
 const axios = require('axios');
-const {query, queries} = require('./queries');
+const { query, query_chart, querires, queries_count, queries_chart, ipInCache } = require('./queries');
 const app = express();
 const PORT = 3000;
 const httpServer = require("http").createServer(app);
@@ -18,10 +19,24 @@ app.use(cookieParser());
 
 io.on('connection', socket => {
   console.log('client connected');  
+
+  socket.on("range", range => {
+
+    //passing down ip using closure in the queries.js file
+    query_chart(socket, ip = ipInCache, range);
+    
+  })
+
   socket.on("ip", ip => {
-    setInterval(query, 5000, socket, ip);
+
+    // for testing 
+    query(socket,ip);
+
+    // uncomment after test for normal use
+    // setInterval(query, 5000, socket, ip);
   })
 })
+
 app.get('/', (req, res) => {
   console.log('connect')
   return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
