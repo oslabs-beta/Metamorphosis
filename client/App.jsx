@@ -9,24 +9,21 @@ import Producer from './pages/Producer';
 import Broker from './BrokerDashboard/Broker';
 
 import main from './scss/main.scss';
-import { SocketProvider } from './socket';
 
 const App = () => {
   return (
-    // <SocketProvider>
-      <Router>
-        <Sidebar>
+    <Router>
+      <Sidebar>
         <Routes>
-          <Route path="/" element={<Connection />}/> 
+        <Route path="/" element={<Connection />}/> 
+
           {/* <Route path="/" element={ <Broker/> }/>   */}
           <Route path="/broker" element={ <Broker/> }/>  
           <Route path="/producer" element={ <Producer /> }/> 
           <Route path="/consumer" element={ <Consumer /> }/> 
         </Routes>
-        </Sidebar>
-      </Router>
-    // </SocketProvider>
-
+      </Sidebar>
+    </Router>
   );
 };
 
