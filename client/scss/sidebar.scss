@@ -1,0 +1,112 @@
+// sidebar styling
+.sidebar{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	padding: 20px;;
+	background: rgba(16, 42, 67);
+	width: 150px;
+	height: 100vh;
+	margin-right: 30px;
+
+	.sidebar-logo{
+		max-width: 70%;
+		top: 50;
+	}
+
+
+	.nav-header{
+		color: white;
+		margin-top: 20px;
+		margin-bottom: 90px;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+
+		.collapse-icon{
+			align-self: end;
+		}
+
+	}
+	
+	.nav-item{
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		margin:30 0 30 15;
+		
+		.nav-link{
+			display: flex;
+			text-decoration: none;
+			color: white;
+			align-items: center;
+		
+			&:hover{
+				color: rgb(126, 124, 123);
+			}
+
+
+		}
+		
+		.nav-title{
+			margin-left: 10px;
+		}
+		.nav-span{
+			margin-left: 10px;
+		}
+	}
+}
+
+.sidebar-collapse{
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	padding: 20px;;
+	background: rgba(16, 42, 67);
+	width: 50px;
+	height: 100vh;
+	margin-right: 30px;
+
+	.sidebar-logo{
+		max-width: 70%;
+		visibility: hidden;
+	}
+
+
+	.nav-header{
+		color: white;
+		margin-bottom: 208px;
+		display: flex;
+		flex-flow: column;
+		justify-content: center;
+		align-items: center;
+		margin-top: 20px;
+		// margin:30 0 30 15;
+	}
+	
+	.nav-item{
+		display: flex;
+		flex-flow: row wrap;
+		align-items: center;
+		margin:30 0 30 15;
+		
+		.nav-link{
+			display: flex;
+			text-decoration: none;
+			color: white;
+			align-items: center;
+		
+			&:hover{
+				color: rgb(126, 124, 123);
+			}
+		}
+		
+		.nav-title{
+			margin-left: 10px;
+		}
+		.nav-span{
+			margin-left: 10px;
+		}
+	}
+}

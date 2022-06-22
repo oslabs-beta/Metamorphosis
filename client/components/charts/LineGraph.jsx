@@ -27,6 +27,8 @@ const LineGraph = ({graphProps}) => {
   const { title, x, y } = graphProps;
 
   const options = {
+
+    animation: false,
     responsive: true,
     plugins: {
         legend: {

@@ -24,7 +24,7 @@ io.on('connection', socket => {
 })
 app.get('/', (req, res) => {
   console.log('connect')
-  return res.status(200).sendFile(path.join(__dirname, '../client/index.html'));
+  return res.status(200).sendFile(path.join(__dirname, '../dist/index.html'));
 });
 
 app.use('*', (req,res) => {
