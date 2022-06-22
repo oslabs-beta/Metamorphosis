@@ -20,6 +20,7 @@ module.exports = {
     port: 8080,
     // enable HMR on the devServer
     hot: true,
+    open: true,
     // fallback to root for other urls
     historyApiFallback: true,
     static: {

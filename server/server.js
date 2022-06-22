@@ -30,10 +30,10 @@ io.on('connection', socket => {
   socket.on("ip", ip => {
 
     // for testing 
-    query(socket,ip);
+    // query(socket,ip);
 
     // uncomment after test for normal use
-    // setInterval(query, 5000, socket, ip);
+    setInterval(query, 5000, socket, ip);
   })
 })
 
