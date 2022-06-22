@@ -7,27 +7,33 @@ import LineGraph from '../components/charts/LineGraph';
 
 const BrokerDisplay = () => {
 
-	const data1 = {
-		title: 'metric1',
-		value: 2
+	const insyncReplica = {
+		title: 'In-Sync Replica Count',
+		value: 1
 	}
 
-	const data2 = {
-		title: 'metric2',
+	const underreplicated = {
+		title: 'Underreplicated Partitions',
 		value: 4
 	}
 
-	const data3 = {
-		title: 'metric3',
+	const offlinePartitions = {
+		title: 'Offline Partitions Count',
 		value: 5
 	}
-	const data4 = {
-		title: 'metric4',
+	const requestBytesCount = {
+		title: 'Request Bytes Count',
 		value: 6
 	}
 
-	const data5 = {
-		title: 'My line chart',
+	const totalBytesIn = {
+		title: 'Total Bytes In',
+		x: [4, 5, 6, 7, 8],
+		y: [1, 3, 5, 6, 8]
+	}
+
+	const totalBytesOut = {
+		title: 'Total Bytes Out',
 		x: [4, 5, 6, 7, 8],
 		y: [1, 3, 5, 6, 8]
 	}
@@ -37,22 +43,28 @@ const BrokerDisplay = () => {
 		<div className='broker'>
 			<Grid container spacing={2}>
 				<Grid item xs={3}>
-				  <MetricCard data={data1} normalVal={2}/>
+				  <MetricCard data={insyncReplica} normalVal={2}/>
 				</Grid>
 				<Grid item xs={3}>
-					<MetricCard data={data2} normalVal={2}/>
+					<MetricCard data={underreplicated} normalVal={2}/>
 				</Grid>
 				<Grid item xs={3}>
-					<MetricCard data={data3} normalVal={2}/>
+					<MetricCard data={offlinePartitions} normalVal={2}/>
 				</Grid>
 				<Grid item xs={3}>
-					<MetricCard data={data4} normalVal={2}/>
+					<MetricCard data={requestBytesCount} normalVal={2}/>
 				</Grid>
 				<Grid item xs={6}>
-				<BarChart />
+				<LineGraph graphProps={totalBytesIn}/>
 				</Grid>
 				<Grid item xs={6}>
-				<LineGraph graphProps={data5}/>
+				<LineGraph graphProps={totalBytesOut}/>
+				</Grid>
+				<Grid item xs={6}>
+				<LineGraph graphProps={totalBytesIn}/>
+				</Grid>
+				<Grid item xs={6}>
+				<LineGraph graphProps={totalBytesOut}/>
 				</Grid>
 			</Grid>
 		</div>

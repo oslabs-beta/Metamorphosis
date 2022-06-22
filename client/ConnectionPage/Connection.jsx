@@ -103,10 +103,11 @@ const Connection = () => {
     <div className="home">
           {/* <label>Kafka IP:<input type="text" name="name" required/></label>
     <button onClick={connectIO}>connect</button> */}
-      {!ip?
       
+      {!ip?
+      <div className="home-form">
       <form className="connect-form" onSubmit={handleConnect}>
-        <div className="connnect-inputs">
+        <div className="connect-inputs">
           <label htmlFor="ipaddress" className="ip-label">IP Address: </label>
           <input 
               id="ipaddress"
@@ -134,16 +135,17 @@ const Connection = () => {
         <div className="form-input-btn">
           <button className="connect-form-btn" type="submit">Connect</button>
         </div>
-        {(ipError && portError)? <p style={{color:"#FF3D2E"}}>Invalid IP Address and PORT</p>
-        : ipError? <p style={{color:"#FF3D2E"}}>Invalid IP Address</p>
-        : portError? <p style={{color:"#FF3D2E"}}>Invalid PORT</p> 
-        : connectError? <p style={{color:"#FF3D2E"}}>Unable to connect</p>
+        {(ipError && portError)? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address and PORT</p>
+        : ipError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address</p>
+        : portError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid PORT</p> 
+        : connectError? <p className="Error" style={{color:"#FF3D2E"}}>Unable to connect</p>
         : null
         }
     </form>
+    </div>
     : 
     <div className="form-input-btn">
-      <button className="disconnect-form-btn" type="submit">Disconnect</button>
+      <button className="connect-form-btn" type="submit">Disconnect</button>
     </div>}
     </div>
     )
