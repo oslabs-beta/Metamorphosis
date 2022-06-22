@@ -8,8 +8,8 @@ const queries = {
   kafka_server_brokertopicmetrics_bytesout_total: []
 }
 
-function query(socket, ip = 'localhost:9090'){
-  let query_val;
+function query(socket, ip){
+  console.log('in the query function', ip)
   for (const [key, value] of Object.entries(queries)) {
     query_val = key;
     axios.get(`http://${ip}/api/v1/query`,{ 
@@ -43,7 +43,7 @@ function query(socket, ip = 'localhost:9090'){
         }
         
         // console.log('after updating', queries)
-        //socket.emit("data", queries);
+        socket.emit("data", queries);
       })
       .catch(err => console.log(err.code))
     }

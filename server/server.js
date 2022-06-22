@@ -19,13 +19,13 @@ app.use(cookieParser());
 
 io.on('connection', socket => {
   console.log('client connected');  
+
   socket.on("interval", interval => {
     console.log(interval);
   })
 
   socket.on("ip", ip => {
-    console.log('here', ip)
-    // setInterval(query, 5000, socket, ip);
+    setInterval(query, 5000, socket, ip);
   })
 })
 

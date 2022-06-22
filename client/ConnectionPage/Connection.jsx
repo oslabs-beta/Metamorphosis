@@ -84,16 +84,15 @@ const Connection = () => {
           
           socket.connect(); 
 
-          socket.on("queries_chart", (queries_chart)=>{
-            if(queries_chart) dispatch(connectAddress({ipaddress, port}));
-            console.log('incoming message: ',queries_chart)
-          });
+          // socket.on("queries_chart", (queries_chart)=>{
+          //   if(queries_chart) dispatch(connectAddress({ipaddress, port}));
+          //   console.log('incoming message: ',queries_chart)
+          // });
 
           socket.on("queries_count", (queries_count)=>{
             if(queries_count) dispatch(connectAddress({ipaddress, port}));
             console.log('incoming message: ',queries_count)
           });
-          socket.emit("interval", "15");
           socket.emit("ip", `${ipaddress}:${port}`);
 
             //reset form data
