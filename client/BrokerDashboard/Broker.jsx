@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import Grid from '@mui/material/Grid';
-import MetricCard from '../components/charts/MetricCard';
+import MetricCard from '../components/charts/MetricCard'
 import LineGraph from '../components/charts/LineGraph';
 import socket from '../socket';
 
