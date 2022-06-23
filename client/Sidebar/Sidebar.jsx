@@ -25,7 +25,7 @@ const Sidebar = ({children}) => {
                </div>
                {
                    SidebarItems.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className="nav-link" activeclassName="active">
+                       <NavLink to={item.path} key={index} className="nav-link" activeclassname="active">
                            <div className="icon">{item.icon}</div>
                            <div style={{display: isOpen ? "block" : "none"}} className="nav-title">{item.title}</div>
                        </NavLink>

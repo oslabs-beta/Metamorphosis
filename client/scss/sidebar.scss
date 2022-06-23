@@ -11,6 +11,7 @@
 	background: rgba(16, 42, 67);
 	color: #fff;
 	// position: sticky;
+	height: 100vh;
 	top: 0;
 	bottom: 0;
 }
@@ -31,13 +32,13 @@
 
 .nav-link{
 	display: flex;
+	align-items: center;
 	color: #fff;
 	padding: 10px 15px;
 	gap: 15px;
 	transition: all 0.5s;
 
 	&:hover{
-		// background:lightskyblue;
 		color: rgb(126, 124, 123);
 		transition: all 0.5s;
 	}

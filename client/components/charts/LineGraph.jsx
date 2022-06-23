@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-
+import unixTimeStamptoTime from '../../timestamp.js'
 
 ChartJS.register(
   CategoryScale,
@@ -24,16 +24,15 @@ ChartJS.register(
 
 // const LineGraph = ({options, data}) => {
 const LineGraph = ({graphProps}) => {
-  const { title, x, y } = graphProps;
-
+  const { title, datapoints, color } = graphProps;
+  console.log(`in linegraph ${Date.now()}`, datapoints);
   const options = {
-
     animation: false,
     responsive: true,
     plugins: {
-        legend: {
-        position: 'top',
-        },
+        // legend: {
+        // position: 'top',
+        // },
         title: {
         display: true,
         text: title
@@ -43,19 +42,22 @@ const LineGraph = ({graphProps}) => {
 
   const data = {
     //x-axis 
-    labels: x,
+    labels: datapoints.x.map(el => unixTimeStamptoTime(el)),
     //additional lines will be a new object in the dataset
     datasets:[{
       //y-axis data
-      label: 'line1',
-      data: y,
+      label: title,
+      data: datapoints.y,
       //input line color
-      borderColor: 'rgb(255,255,255,0.5)',
-      backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      borderColor: color,
+      backgroundColor: color,
     }],
 
   }  
-    
+
+  const borderColors = [
+    ''
+  ]
 
   return (
     <Line

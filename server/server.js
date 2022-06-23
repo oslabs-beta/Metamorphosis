@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const path = require('path');
 const axios = require('axios');
-const { query, query_chart, querires, queries_count, queries_chart, ipInCache } = require('./queries');
+const { query, query_chart, queries, queries_count, queries_chart, ipInCache } = require('./queries');
 const app = express();
 const PORT = 3000;
 const httpServer = require("http").createServer(app);
@@ -30,10 +30,10 @@ io.on('connection', socket => {
   socket.on("ip", ip => {
 
     // for testing 
-    query(socket,ip);
+    // query(socket,ip);
 
     // uncomment after test for normal use
-    // setInterval(query, 5000, socket, ip);
+    setInterval(query, 5000, socket, ip);
   })
 })
 

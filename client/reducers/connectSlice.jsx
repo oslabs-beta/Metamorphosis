@@ -13,11 +13,9 @@ export const connectSlice = createSlice({
   reducers: {
 
     connectAddress: (state, action) => {
-			console.log('in dispatch, action payload', action.payload);
 			const { ipaddress, port } = action.payload;
 			state.ipaddress = ipaddress;
 			state.port = port;
-      console.log('in connect reducer state', state.ipaddress);
     },
 
     disconnectAddress: (state, action) => {
