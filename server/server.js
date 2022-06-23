@@ -4,7 +4,7 @@ const path = require('path');
 const axios = require('axios');
 const { query, query_chart, querires, queries_count, queries_chart, ipInCache } = require('./queries');
 const app = express();
-const PORT = 3000;
+const PORT = 5000;
 const httpServer = require("http").createServer(app);
 const io = require("socket.io")(httpServer, {
   cors: {

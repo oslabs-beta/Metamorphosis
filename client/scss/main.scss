@@ -10,7 +10,7 @@
 }
 
 body{
-	background-color: rgb(29, 32, 37);
+	background-color: rgb(234, 235, 236);
 	font-family: 'Montserrat', sans-serif;
 }
 
@@ -48,7 +48,7 @@ main{
 }
 
 label{
-	color: rgb(175, 219, 225);
+	color: rgb(47, 59, 141);
 	margin-right: 5px;
 	align-self: center;
 }
@@ -68,8 +68,9 @@ label{
 	margin: 20 0 20 0;
 
 	&:hover{
-		border: 0.1rem solid rgb(126, 124, 123);
-		color: rgb(126, 124, 123);
+		border: 0.1rem solid rgba(16, 42, 67);
+		background-color: rgb(234, 235, 236);
+		color: rgba(16, 42, 67);
 	}
 }
 
