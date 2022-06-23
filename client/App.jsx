@@ -6,6 +6,7 @@ import Sidebar from './Sidebar/Sidebar';
 import Consumer from './pages/Consumer';
 import Producer from './pages/Producer';
 import Broker from './BrokerDashboard/Broker';
+//import Favicon from "react-favicon";
 
 import main from './scss/main.scss';
 
