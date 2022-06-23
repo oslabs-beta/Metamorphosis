@@ -24,15 +24,15 @@ ChartJS.register(
 
 // const LineGraph = ({options, data}) => {
 const LineGraph = ({graphProps}) => {
-  const { title, datapoints } = graphProps;
+  const { title, datapoints, color } = graphProps;
   console.log(`in linegraph ${Date.now()}`, datapoints);
   const options = {
     animation: false,
     responsive: true,
     plugins: {
-        legend: {
-        position: 'top',
-        },
+        // legend: {
+        // position: 'top',
+        // },
         title: {
         display: true,
         text: title
@@ -46,15 +46,18 @@ const LineGraph = ({graphProps}) => {
     //additional lines will be a new object in the dataset
     datasets:[{
       //y-axis data
-      label: 'line1',
+      label: title,
       data: datapoints.y,
       //input line color
-      borderColor: 'rgba(255,255,255,0.5)',
-      backgroundColor: 'rgba(255, 255, 255, 0.5)',
+      borderColor: color,
+      backgroundColor: color,
     }],
 
   }  
-    
+
+  const borderColors = [
+    ''
+  ]
 
   return (
     <Line

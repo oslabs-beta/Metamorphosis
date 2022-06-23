@@ -4,7 +4,7 @@ const path = require('path');
 const cors = require('cors');
 const dotenv = require('dotenv').config(); //import .env variables
 
-const PORT = 3000;
+const PORT = 5000;
 const app = express();
 
 // mongoose.connect(process.env.MONGOOSE_URL, (err, db)=> {
