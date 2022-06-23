@@ -16,7 +16,7 @@ const Sidebar = ({children}) => {
 
     return (
         <div className="container">
-           <div style={{width: isOpen ? "200px" : "50px"}} className="sidebar">
+           <div style={{width: isOpen ? "150px" : "50px"}} className="sidebar">
                <div className="nav-header">
                    <img style={{display: isOpen ? "block" : "none"}} className="logo" src={logo} alt="logo"/>
                    <div style={{marginLeft: isOpen ? "50px" : "0px"}} className="collapse-icon">

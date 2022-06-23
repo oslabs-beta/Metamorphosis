@@ -12,7 +12,8 @@ const queries_count = {
   
   // data come in as an array with metric.request and each time point value at metric.value[1]
   kafka_network_requestmetrics_requestbytes_count: [],
-  kafka_controller_kafkacontroller_activebrokercount:[]
+  kafka_controller_kafkacontroller_activebrokercount:[],
+  kafka_controller_kafkacontroller_activecontrollercount:[]
 }
 
 const queries_chart = {
@@ -23,7 +24,8 @@ const queries_chart = {
   kafka_controller_controllerstats_autoleaderbalancerateandtimems: {},
   jvm_memory_bytes_used:{},
   kafka_network_requestmetrics_requestqueuetimems:{},
-  kafka_network_requestmetrics_responsesendtimems:{}
+  kafka_network_requestmetrics_responsesendtimems:{},
+  kafka_server_brokertopicmetrics_totalproducerequests_total:{}
 }
 
 let queries = {};
