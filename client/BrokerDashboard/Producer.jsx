@@ -6,14 +6,14 @@ import LineGraph from '../components/charts/LineGraph';
 import socket from '../socket';
 
 
-const BrokerDisplay = () => {
+
+const producerDisplay = () => {
 	const [actController, setActController] = useState(null);
-	const [actBroker, setActBroker] = useState(null);
+	const [actProducer, setActProducer] = useState(null);
 	const [underReplicatedCount, setUnderReplicatedCount] = useState(null);
 	const [offPartitions, setOffPartitions] = useState(null);
 
 
-	const [jvm, setJvm] = useState({x: [], y:[]});
 	const [totBytesIn, setTotBytesIn] = useState({x: [], y:[]});
 	const [totBytesOut, setTotBytesOut] = useState({x: [], y:[]});
 	const [reqQueue, setReqQueue] = useState({x: [], y:[]});
@@ -37,10 +37,10 @@ const BrokerDisplay = () => {
 		const { kafka_network_requestmetrics_responsesendtimems: responseSendTimes } = data;
 
 		//logic for handling active controller count
-		setActController(activeControllerCount[0].value);
+		setActController();
 
 		//logic for handling active broker count
-		setActBroker(activeBrokerCount[0].value);
+		setActProducer();
 
 		//logic for handling underreplicated partitions
 		const uRCount = underReplicatedPartitions.reduce((acc, obj) => {
@@ -55,8 +55,7 @@ const BrokerDisplay = () => {
 		
 		
 		//logic for handling jvm_memory_bytes_used
-		setJvm(jvmBytesUsed[0].output);
-
+		
 		//logic for handling total bytes in
 		setTotBytesIn(totalBytesIn[0].output);
 
@@ -69,6 +68,9 @@ const BrokerDisplay = () => {
 		//logic for handling response send time
 		setResQueue(responseSendTimes[0].output);
 
+
+
+
 	});
 	
 
@@ -77,15 +79,15 @@ const BrokerDisplay = () => {
 
 	}, [])
 
-	//counters
+
 	const activeController = {
 		title: 'Active Controller',
 		value: actController
 	}
 
-	const activeBroker = {
-		title: 'Active Brokers',
-		value: actBroker
+	const activeProducer = {
+		title: 'Active Producer',
+		value: actProducer
 	}
 
 	const underreplicated = {
@@ -97,14 +99,10 @@ const BrokerDisplay = () => {
 		title: 'Offline Partitions Count',
 		value: offPartitions
 	}
-
-
-	//charts
-	const jvmUsed = {
-		title: 'JVM Bytes Used',
-		datapoints: totBytesIn,
-		color: 'rgba(191, 104, 149, 0.8)'
-	}
+	// const requestBytesCount = {
+	// 	title: 'Request Bytes Count',
+	// 	value: 6
+	// }
 
 	const tBytesIn = {
 		title: 'Total Bytes In',
@@ -117,18 +115,6 @@ const BrokerDisplay = () => {
 		datapoints: totBytesOut,
 		color: 'rgba(100, 200, 7, 0.8)'
 	}
-
-	const reqQueueTimes = {
-		title: 'Request Queue Times',
-		datapoints: reqQueue,
-		color: 'rgba(234, 157, 73, 0.8)'
-	}
-
-	const resSendTimes = {
-		title: 'Response Send Times',
-		datapoints: resSend,
-		color: 'rgba(116, 126, 234, 0.8)'
-	}
 	// rgba(191, 104, 149, 0.8)
 	// rgba(234, 157, 73, 0.8)
 	// rgba(234, 93, 73, 0.8)
@@ -139,13 +125,13 @@ const BrokerDisplay = () => {
 	
 	return (
 		
-		<div className='broker'>
+		<div className='producer'>
 			{/* <div>
 				<button onClick={clickme}>TestButton</button>
 			</div> */}
 			<Grid container spacing={2}>
 				<Grid item xs={3}>
-				  <MetricCard data={activeBroker} normalVal={1000}/>
+				  <MetricCard data={activeProducer} normalVal={1000}/>
 				</Grid>
 				<Grid item xs={3}>
 				  <MetricCard data={activeController} normalVal={1}/>
@@ -156,25 +142,32 @@ const BrokerDisplay = () => {
 				<Grid item xs={3}>
 					<MetricCard data={offlinePartitions} normalVal={0}/>
 				</Grid>
-				<Grid item xs={4}>
-					<LineGraph graphProps={jvmUsed}/>
-				</Grid>
-				<Grid item xs={4}>
+				<Grid item xs={6}>
 					<LineGraph graphProps={tBytesIn}/>
 				</Grid>
-				<Grid item xs={4}>
+				<Grid item xs={6}>
 					<LineGraph graphProps={tBytesOut}/>
 				</Grid>
-				<Grid item xs={6}>
-					<LineGraph graphProps={reqQueueTimes}/>
+				{/*
+				<Grid item xs={3}>
+					<MetricCard data={requestBytesCount} normalVal={2}/>
 				</Grid>
 				<Grid item xs={6}>
-					<LineGraph graphProps={resSendTimes}/>
+				<LineGraph graphProps={totalBytesIn}/>
 				</Grid>
+				<Grid item xs={6}>
+				<LineGraph graphProps={totalBytesOut}/>
+				</Grid>
+				<Grid item xs={6}>
+				<LineGraph graphProps={totalBytesIn}/>
+				</Grid>
+				<Grid item xs={6}>
+				<LineGraph graphProps={totalBytesOut}/>
+				</Grid> */}
 			</Grid>
 		</div>
 		
 	)
 }
 
-export default BrokerDisplay;
+export default ProducerDisplay;
