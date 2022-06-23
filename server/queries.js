@@ -11,7 +11,8 @@ const queries_count = {
   kafka_controller_kafkacontroller_offlinepartitionscount: [],
   
   // data come in as an array with metric.request and each time point value at metric.value[1]
-  kafka_network_requestmetrics_requestbytes_count: []
+  kafka_network_requestmetrics_requestbytes_count: [],
+  kafka_controller_kafkacontroller_activebrokercount:[]
 }
 
 const queries_chart = {
@@ -19,7 +20,10 @@ const queries_chart = {
   kafka_server_brokertopicmetrics_bytesout_total: {},
 
   // metric has a new key 'quantile' and an array with time point & value
-  kafka_controller_controllerstats_autoleaderbalancerateandtimems: {}
+  kafka_controller_controllerstats_autoleaderbalancerateandtimems: {},
+  jvm_memory_bytes_used:{},
+  kafka_network_requestmetrics_requestqueuetimems:{},
+  kafka_network_requestmetrics_responsesendtimems:{}
 }
 
 let queries = {};
@@ -67,7 +71,7 @@ function query_count(socket, ip){
         queries = {...queries_count, ...queries_chart};
         socket.emit("data", queries);
       })
-      .catch(err => console.log(err.code))
+      .catch(err => console.log('queries.js line 71',err.code))
   };
 };
 
