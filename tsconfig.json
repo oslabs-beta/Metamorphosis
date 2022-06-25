@@ -1,0 +1,12 @@
+{
+	"include":["*"],
+	"compilerOptions": {
+			"module": "commonjs",
+			"moduleResolution": "node",
+			"jsx": "react",
+			"allowSyntheticDefaultImports": true,
+			"esModuleInterop": true,
+			"noImplicitAny": true,
+			
+	}
+}
