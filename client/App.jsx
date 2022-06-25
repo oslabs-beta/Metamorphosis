@@ -7,7 +7,10 @@ import Sidebar from './Sidebar/Sidebar';
 import Consumer from './pages/Consumer';
 import Producer from './pages/Producer';
 import Broker from './BrokerDashboard/Broker';
-//import Favicon from "react-favicon";
+import consumer from './ConsumerDashboard/Consumer';
+import producer from './ProducerDashboard/Producer';
+
+
 
 import main from './scss/main.scss';
 

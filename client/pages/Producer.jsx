@@ -1,8 +1,11 @@
 import React from 'react'
+import BarChart from '../components/charts/BarChart.jsx'
 
 const Producer = () => {
 	return (
-		<div className='producer'>Producer</div>
+		<div className="producer">
+			<p>Producer</p>
+		</div>
 	)
 }
 
