@@ -10,7 +10,7 @@ import { Server } from 'socket.io';
 const PORT = 3000;
 const app = express(); 
 const httpServer = createServer(app);
-const io = new Server<ClientToServerEvents, ServerToClientEvents, InterServerEvents, SocketData>(httpServer, {
+const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
   cors: {
     origin: "http://localhost:8080",
   },
@@ -21,21 +21,13 @@ app.use(express.urlencoded());
 app.use(cookieParser());
 
 interface ServerToClientEvents {
-  data: (x: { [key: string]: []|{}}) => void;
+  data: (x: { [key: string]: Object}) => void;
 
 }
 
 interface ClientToServerEvents {
-  range: (x: number) => void;
+  range: (x: string) => void;
   ip: (x: string) => void;
-}
-
-interface InterServerEvents {
-  
-}
-
-interface SocketData {
-
 }
 
 io.on('connection', socket => {
