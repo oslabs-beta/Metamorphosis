@@ -4,6 +4,8 @@ import path from 'path';
 import axios from'axios';
 //this one when changed to import threw errors at me
 const { query, query_chart, queries, queries_count, queries_chart, ipInCache } = require('./queries');
+const { callTransporter, messageCreator } = require('./nodemailer');
+
 import { createServer } from 'http';
 import { ServerError } from '../types';
 import { Server } from 'socket.io';
@@ -38,15 +40,16 @@ io.on('connection', socket => {
     //passing down ip using closure in the queries.js file
     query_chart(socket, ipInCache, range);
     
+    
   })
 
   socket.on("ip", ip => {
 
     // for testing 
-    // query(socket,ip);
-
+    query(socket,ip);
+    callTransporter(messageCreator('abc@abc.com', 'testsub', 'testbod'));
     // uncomment after test for normal use
-    setInterval(query, 5000, socket, ip);
+    //setInterval(query, 5000, socket, ip);
   })
 })
 
