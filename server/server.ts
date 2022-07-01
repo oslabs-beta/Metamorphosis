@@ -48,10 +48,11 @@ io.on('connection', socket => {
   socket.on("ip", ip => {
 
     // for testing 
-    query(socket,ip);
+    // query(socket,ip);
     //setTimeout(callTransporter, 3000, {to: 'sendFromMetricCard@yay.com', subject: 'FAKE Underreplicated Partitions'});
+    
     // uncomment after test for normal use
-    //setInterval(query, 5000, socket, ip);
+    setInterval(query, 5000, socket, ip);
   })
 
   socket.on("alert", data => {
