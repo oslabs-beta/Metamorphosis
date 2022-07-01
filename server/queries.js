@@ -33,7 +33,7 @@ let ipInCache = {ip: null};
 
 function query(socket, ip){
   // temporarily rerout to local host to save AWS cost
-   ip = 'localhost:9090';
+  // ip = 'localhost:9090';
   ipInCache.ip = ip;
 
     
