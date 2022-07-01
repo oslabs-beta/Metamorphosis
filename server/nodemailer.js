@@ -24,16 +24,19 @@ if (process.env.NODE_ENV === 'production' ){
 }
 let transporter = nodemailer.createTransport(mailConfig);
 
-const messageCreator = (email, subject, text) => {
-  return {
-    to: email,
-    subject: `${subject} + ${Date.now()}`,
-    text: text
-  }
+const messageCreator = (input) => {
+  const defaultO = {
+    to: 'test@test.com',
+    subject: `${input} + ${Date.now()}`,
+    text: 'please check your Kafka\'s health'
+  };
+  const ans = Object.assign({}, defaultO, input)
+  return ans;
 }
 
 const callTransporter = (message) => {
-  transporter.sendMail(message, (err, info)=>{
+  
+  transporter.sendMail(messageCreator(message), (err, info)=>{
     if(err){
       console.log('nodemailer error');
       return process.exit(1);
@@ -44,4 +47,25 @@ const callTransporter = (message) => {
   })
 }
 
-module.exports = { callTransporter, messageCreator };
+const throttle = (func, delay) => {
+  let lastAlert = null;
+  const throttled = (...args) => {
+    let now = new Date().getTime();
+    if(!lastAlert){
+      lastAlert = now;
+      return func(...args);
+    } else {
+      if(now - lastAlert < delay){
+        return;
+      } else {
+        lastAlert = now;
+        return func(...args);
+      }
+    }
+  }
+  return throttled;
+}
+
+const throttled_callTransport = throttle(callTransporter,1000*60*5);
+
+module.exports = { throttled_callTransport, messageCreator };

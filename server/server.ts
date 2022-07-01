@@ -4,11 +4,12 @@ import path from 'path';
 import axios from'axios';
 //this one when changed to import threw errors at me
 const { query, query_chart, queries, queries_count, queries_chart, ipInCache } = require('./queries');
-const { callTransporter, messageCreator } = require('./nodemailer');
+const { throttled_callTransport, messageCreator } = require('./nodemailer');
 
 import { createServer } from 'http';
 import { ServerError } from '../types';
 import { Server } from 'socket.io';
+import socket from '../client/socket';
 const PORT = 3000;
 const app = express(); 
 const httpServer = createServer(app);
@@ -30,6 +31,7 @@ interface ServerToClientEvents {
 interface ClientToServerEvents {
   range: (x: string) => void;
   ip: (x: string) => void;
+  alert: (email: string, title: string, text: string) => void;
 }
 
 io.on('connection', socket => {
@@ -47,11 +49,18 @@ io.on('connection', socket => {
 
     // for testing 
     query(socket,ip);
-    callTransporter(messageCreator('abc@abc.com', 'testsub', 'testbod'));
+    //setTimeout(callTransporter, 3000, {to: 'sendFromMetricCard@yay.com', subject: 'FAKE Underreplicated Partitions'});
     // uncomment after test for normal use
     //setInterval(query, 5000, socket, ip);
   })
+
+  socket.on("alert", data => {
+    throttled_callTransport(data);
+
+  })
 })
+
+
 
 app.get('/', (req: Request, res: Response) => {
   console.log('connect')
