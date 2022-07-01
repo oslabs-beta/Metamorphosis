@@ -8,7 +8,7 @@
     "build": "webpack",
     "server-only": "nodemon ./server/server.js",
     "test-server": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot\" \"nodemon ./server/test-server.js\"",
-    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot\" \"nodemon ./server/server.js\"",
+    "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot\" \"nodemon ./server/server.ts\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -37,6 +37,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.0",
+    "@types/cookie-parser": "^1.4.3",
     "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "chart.js": "^3.8.0",
@@ -48,6 +49,7 @@
     "express-session": "^1.17.3",
     "jest-environment-jsdom": "^28.1.0",
     "mongoose": "^6.3.4",
+    "nodemailer": "^6.7.6",
     "pg": "^8.7.3",
     "react": "^18.1.0",
     "react-chartjs-2": "^4.2.0",
