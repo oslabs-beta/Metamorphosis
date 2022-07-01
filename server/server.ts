@@ -4,7 +4,7 @@ import path from 'path';
 import axios from'axios';
 //this one when changed to import threw errors at me
 const { query, query_chart, queries, queries_count, queries_chart, ipInCache } = require('./queries');
-const { throttled_callTransport, messageCreator } = require('./nodemailer');
+const { throttled_callTransport } = require('./nodemailer');
 
 import { createServer } from 'http';
 import { ServerError } from '../types';

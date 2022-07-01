@@ -1,7 +1,9 @@
 const nodemailer = require('nodemailer');
+require('dotenv').config();
 
 let mailConfig;
 if (process.env.NODE_ENV === 'production' ){
+  
     // all emails are delivered to destination
     mailConfig = {
         host: 'smtp.sendgrid.net',
@@ -26,7 +28,7 @@ let transporter = nodemailer.createTransport(mailConfig);
 
 const messageCreator = (input) => {
   const defaultO = {
-    to: 'test@test.com',
+    to: 'sonia.schinner85@ethereal.email',
     subject: `${input} + ${Date.now()}`,
     text: 'please check your Kafka\'s health'
   };
