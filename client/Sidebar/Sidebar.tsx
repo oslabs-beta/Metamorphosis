@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../assets/logo.png' 
+import * as logo from '../assets/logo.png';
 import { SidebarItems } from './SidebarItems';
 import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -9,18 +9,20 @@ import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { NavLink } from 'react-router-dom';
 
-type AppProps = {
-    children: Function;
+type SBAppProps = {
+    children?:
+    | React.ReactNode
+    | React.ReactNode[];
   }; /* use `interface` if exporting so that consumers can extend */
-interface Open{
+type Open = {
     isOpen: boolean, 
     setIsOpen: boolean
 }
 
 
-const Sidebar = ({ children }: AppProps): JSX.Element => {
-    const[isOpen ,setIsOpen]: Open = useState(true);
-    const toggle: Function = () => setIsOpen (!isOpen);
+const Sidebar = ({children}: {children: React.ReactNode}) => {
+    const[isOpen , setIsOpen] = useState<boolean>(true); // not sure about this one //Open deleted
+    const toggle = () => setIsOpen (!isOpen);
 
     return (
         <div className="container">
@@ -32,8 +34,10 @@ const Sidebar = ({ children }: AppProps): JSX.Element => {
                    </div>
                </div>
                {
+                // function MyCard(props: { param1: ObjectDto, toggleFunction: any }) {}
+
                    SidebarItems.map((item, index)=>(
-                       <NavLink to={item.path} key={index} className="nav-link" activeclassname="active">
+                       <NavLink to={item.path} key={index} className="nav-link" activeclassName="active">
                            <div className="icon">{item.icon}</div>
                            <div style={{display: isOpen ? "block" : "none"}} className="nav-title">{item.title}</div>
                        </NavLink>
