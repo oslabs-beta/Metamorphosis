@@ -1,5 +1,8 @@
 const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 let mailConfig;
 if (process.env.NODE_ENV === 'production' ){
@@ -48,6 +51,21 @@ const callTransporter = (message) => {
     transporter.close();
   })
 }
+const callSendGrid = (x) => {
+  sgMail
+  .send({
+    to: 'chrisxesq@gmail.com', // Change to your recipient
+  from: 'metamorphosisny33@gmail.com', // Change to your verified sender
+  subject: 'Sending with SendGrid is Fun',
+  text: 'and easy to do anywhere, even with Node.js',
+  })
+  .then(() => {
+    console.log('Email sent')
+  })
+  .catch((error) => {
+    console.error('errrrrr',error)
+  })
+}
 
 const throttle = (func, delay) => {
   let lastAlert = null;
@@ -68,6 +86,8 @@ const throttle = (func, delay) => {
   return throttled;
 }
 
-const throttled_callTransport = throttle(callTransporter,1000*60*5);
+//const throttled_callTransport = throttle(callTransporter,1000*60*5);
+
+const throttled_callTransport = throttle(callSendGrid,1000*60*5);
 
 module.exports = { throttled_callTransport, messageCreator };

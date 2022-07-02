@@ -9,7 +9,7 @@ const MetricCard = ({data, normalVal}) => {
 
     console.log('inMetric card', data<=normalVal);
     if(data.value > normalVal){
-        socket.emit('alert', {to: 'sendFromMetricCard@yay.com', subject: data.title});
+        socket.emit('alert', {to: 'chrisxesq@gmail.com', subject: data.title});
     }
    
     return (
