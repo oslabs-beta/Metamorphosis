@@ -1,5 +1,6 @@
 import React from 'react';
 
+<<<<<<< HEAD
 //define types for metric card props
 export interface CardProp {
 	title: string, 
@@ -16,3 +17,8 @@ export interface GraphProp {
 	color: string
 }
 
+=======
+export type ServerError = {
+    error: string 
+}
+>>>>>>> dev

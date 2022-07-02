@@ -85,6 +85,10 @@ module.exports = {
       {//test gives regex file path, use is name of loader
         test: /\.(png|jpg|gif|svg)$/i, 
         type: 'asset/resource',
+        loader: 'file-loader',
+        options: {
+          name: '[name].[ext]',
+        },
         exclude: /node_modules/
       },
     ],
@@ -92,6 +96,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './index.html',
+      favicon: "./public/images/favicon.ico",
     }),
   ],
   resolve: {

@@ -1,5 +1,5 @@
 {
-	"include":["*"],
+	"include":["*","src", "index.d.ts"],
 	"compilerOptions": {
 			"module": "commonjs",
 			"lib":[
@@ -11,5 +11,5 @@
 			"allowSyntheticDefaultImports": true,
 			"esModuleInterop": true,
 			"noImplicitAny": true,
-	},
+		}
 }
