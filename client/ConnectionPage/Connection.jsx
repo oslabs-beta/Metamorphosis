@@ -88,7 +88,7 @@ const Connection = () => {
   }
 
   return (
-    <div className="home">
+    <div className="connect">
       
       {!ip?
       <div className="home-form">
