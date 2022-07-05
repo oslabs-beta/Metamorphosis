@@ -7,8 +7,8 @@ const MetricCard = ({data, normalVal}) => {
     console.log('inMetric card', data<=normalVal);
     return (
         <div className="metric-card">
-            {data.value <= normalVal? <p className="metric-title">{data.title}</p>: <p className="metric-title-over">{data.title}</p>}
-            {data.value <= normalVal? <p className="metric-val">{data.value}</p>:<p className="metric-over-norm">{data.value}</p>}
+            {data.value <= normalVal? <p id={(data.title).split(' ').join('')} className="metric-title">{data.title}</p>: <p className="metric-title-over">{data.title}</p>}
+            {data.value <= normalVal? <p id={(data.title).split(' ').join('')+"Value"} className="metric-val">{data.value}</p>:<p className="metric-over-norm">{data.value}</p>}
         </div>
     )
 };
