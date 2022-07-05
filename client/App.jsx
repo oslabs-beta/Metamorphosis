@@ -23,8 +23,8 @@ const App = () => {
   return (
     <Router>
       <Auth0Provider
-      domain="metamorphosis.us.auth0.com"
-      clientId="E9dBALa4u1TqRzpwG8LaMhIn5aA5m9q2"
+      domain={process.env.REACT_APP_AUTH0_DOMAIN}
+      clientId={process.env.REACT_APP_AUTH0_CLIENTID}
       redirectUri={window.location.origin}
       >
       <Sidebar>

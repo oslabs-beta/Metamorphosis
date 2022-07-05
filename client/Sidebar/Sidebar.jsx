@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import logo from '../assets/logo.png' 
+// import logo from '../assets/logo.png' 
+import logo from '../../client/assets/logo.png';
 import { SidebarItems } from './SidebarItems';
 import HomeIcon from '@mui/icons-material/Home';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -17,7 +18,7 @@ const { isAuthenticated } = useAuth0();
 const toggle = () => setIsOpen (!isOpen);
 
 return (
-    <div className="container">
+    <nav className="container">
       <div style={{width: isOpen ? "150px" : "50px"}} className="sidebar">
         <div className="nav-header">
           <img style={{display: isOpen ? "block" : "none"}} className="logo" src={logo} alt="logo"/>
@@ -40,7 +41,7 @@ return (
         }
       </div>
       <main>{children}</main>
-    </div>
+    </nav>
   );
 };
 

@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: [
@@ -85,10 +86,6 @@ module.exports = {
       {//test gives regex file path, use is name of loader
         test: /\.(png|jpg|gif|svg)$/i, 
         type: 'asset/resource',
-        loader: 'file-loader',
-        options: {
-          name: '[name].[ext]',
-        },
         exclude: /node_modules/
       },
     ],
@@ -98,6 +95,7 @@ module.exports = {
       template: './index.html',
       favicon: "./public/images/favicon.ico",
     }),
+    new Dotenv(),
   ],
   resolve: {
     // Enable importing JS / JSX files without specifying their extension
