@@ -156,7 +156,7 @@ const BrokerDisplay = () => {
 				<Grid item xs={3}>
 					<MetricCard data={offlinePartitions} normalVal={0}/>
 				</Grid>
-				<Grid item xs={4}>
+				<Grid id="jvmUsed" item xs={4}>
 					<LineGraph graphProps={jvmUsed}/>
 				</Grid>
 				<Grid item xs={4}>
