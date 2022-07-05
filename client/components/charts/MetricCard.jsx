@@ -1,3 +1,4 @@
+import { useAuth0 } from "@auth0/auth0-react";
 import React, { useState } from "react";
 import io from 'socket.io-client';
 import socket from "../../socket";
@@ -6,10 +7,10 @@ import socket from "../../socket";
 
 
 const MetricCard = ({data, normalVal}) => {
-
+  const { user } = useAuth0();
     console.log('inMetric card', data<=normalVal);
     if(data.value > normalVal){
-        socket.emit('alert', {to: 'chrisxesq@gmail.com', subject: data.title});
+        socket.emit('alert', {to: user.email, subject: data.title});
     }
    
     return (

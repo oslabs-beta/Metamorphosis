@@ -10,7 +10,7 @@ import {
   Legend,
 } from 'chart.js';
 import { Line } from 'react-chartjs-2';
-import unixTimeStamptoTime from '../../timestamp.js'
+import unixTimeStamptoTime from '../../timestamp'
 
 ChartJS.register(
   CategoryScale,

@@ -2,12 +2,14 @@
 	"include":["*","src", "index.d.ts"],
 	"compilerOptions": {
 			"module": "commonjs",
+			"lib":[
+				"es6",
+				"dom"
+			],
 			"moduleResolution": "node",
 			"jsx": "react",
 			"allowSyntheticDefaultImports": true,
 			"esModuleInterop": true,
 			"noImplicitAny": true,
-			
-		},
-		"exclude": ["node_modules", "**/*.spec.ts", "**/*.test.ts"]
+		}
 }

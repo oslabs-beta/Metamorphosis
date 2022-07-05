@@ -1,3 +1,4 @@
+@import 'home';
 @import 'sidebar';
 
 @import 'metric';
@@ -18,7 +19,7 @@ main{
 	display: flex;
 }
 
-.home, .consumer, .producer{
+.home, .login-pg, .connect, .consumer, .producer{
 	display: flex;
 	height: 100vh;
 	margin-left: 20;
@@ -26,8 +27,8 @@ main{
 }
 
 //Home directory
-.home{
-	width: 80vw;
+.connect{
+	// width: 80vw;
 	display: flex;
 	align-items: center;
 	justify-content: center;
