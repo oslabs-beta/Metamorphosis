@@ -67,7 +67,7 @@ const BrokerDisplay = () => {
 		setReqQueue(requestQueueTimes[0].output);
 
 		//logic for handling response send time
-		setResQueue(responseSendTimes[0].output);
+		setResSend(responseSendTimes[0].output);
 
 	});
 	
