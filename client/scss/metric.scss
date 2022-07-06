@@ -1,0 +1,36 @@
+.metric-card{
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: center;
+	align-items: center;
+	border: 1px solid rgba(117, 115, 115, 1);
+	color: rgb(84, 84, 84);
+	border-radius: 10px;
+	padding: 10px;
+}
+
+.metric-title{
+	margin: 5 0 30 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+}
+
+.metric-title-over{
+	margin: 5 0 30 0;
+	font-size: 1.1rem;
+	font-weight: 600;
+	color: rgba(229, 126, 126, 0.956);
+}
+
+.metric-val{
+	font-size: 1.1rem;
+	margin-bottom: 20;
+	// color:rgba(117, 115, 115, 1)
+}
+
+
+.metric-over-norm{
+	font-size: 1.1rem;
+	color: rgba(229, 126, 126, 0.956);
+	margin-bottom: 20;
+}
