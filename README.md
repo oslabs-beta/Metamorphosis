@@ -1,6 +1,6 @@
 <p align="center">
   <a href="http://metamorphosis.app/">
- <img src="./client/assets/Metamorphosis_logo_name.png" width="550" height="67"></p>
+ <img src="./client/assets/_Metamorphosis_logo_name_whiteBG.png" width="550" height="67"></p>
 
 
 

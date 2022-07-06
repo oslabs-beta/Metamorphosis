@@ -132,7 +132,7 @@ const BrokerDisplay = () => {
 	
 	return (
 		
-		<div className='broker'>
+		<div className='dashboard'>
 			<Grid container spacing={2}>
 				<Grid item xs={3}>
 				  <MetricCard data={activeBroker} normalVal={1000}/>
