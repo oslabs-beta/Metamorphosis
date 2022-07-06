@@ -103,7 +103,7 @@ const BrokerDisplay = () => {
 	//charts
 	const jvmUsed = {
 		title: 'JVM Bytes Used',
-		datapoints: totBytesIn,
+		datapoints: jvm,
 		color: 'rgba(191, 104, 149, 0.8)'
 	}
 

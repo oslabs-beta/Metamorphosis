@@ -25,7 +25,11 @@ const queries_chart = {
   jvm_memory_bytes_used:{},
   kafka_network_requestmetrics_requestqueuetimems:{},
   kafka_network_requestmetrics_responsesendtimems:{},
-  kafka_server_brokertopicmetrics_totalproducerequests_total:{}
+  kafka_server_brokertopicmetrics_totalproducerequests_total:{},
+  kafka_consumergroup_group_lag: {},
+  kafka_consumer_consumer_coordinator_metrics_rebalance_total: {},
+  kafka_producer_producer_metrics_io_ratio: {},
+  kafka_producer_producer_metrics_record_error_rate: {} 
 }
 
 let queries = {};
