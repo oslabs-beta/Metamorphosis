@@ -119,7 +119,7 @@ const Connection = () => {
             />
           </div>
           <div className="form-input-btn">
-            <button className="connect-form-btn" type="submit">Connect</button>
+            <button id="connectBtnConnection" className="connect-form-btn" type="submit">Connect</button>
           </div>
           {(ipError && portError)? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address and PORT</p>
           : ipError? <p className="Error" style={{color:"#FF3D2E"}}>Invalid IP Address</p>
