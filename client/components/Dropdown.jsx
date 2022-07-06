@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { io } from 'socket.io-client';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import socket from '../socket';
 
 function Dropdown({title, items = [], multiSelect = false}) {
@@ -70,21 +71,13 @@ function Dropdown({title, items = [], multiSelect = false}) {
         return;
     }
 
-    // function wrapperFunction(item) {
-    //     handleOnClick(item);
-    //     emitData(item);
-    //     return;
-    // }
-
     return (
         <div className='dd-wrapper'>
             <div tabIndex={0} className='dd-header' role='button' onKeyPress={() => toggle(!open)} onClick={() => toggle(!open)}>
                 <div className='dd-header_title'>
                     <p className='dd-header_title--bold'>{title}</p>
+                    <KeyboardArrowDownIcon />
                     <div></div>
-                </div>
-                <div className='dd-header_action'>
-                    <p>{open ? 'Close' : 'Open'}</p>
                 </div>
                 {open && (
                     <ul className='dd-list'>
