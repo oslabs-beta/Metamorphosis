@@ -29,11 +29,6 @@ Monitor and visualize your Kafka clusters with Metamorphosis
 Monitor and visualize your Kafka clusters with Metamorphosis:
 Metamorphosis is a monitoring and visualization tool for your Kafka cluster that allows developers to quickly determine whether new services are functioning correctly. It provides a set of dashboards to inspect each component in the cluster. The tool can be deployed on-premise, so you don't have to rely on expensive cloud solutions.
 
-## Demo
-
-![Metamorphosis-events](./client/assets/events.gif 'Metamorphosis Event Metrics')
-![Metamorphosis-throughput](./client/assets/throughput.gif 'Metamorphosis Throughput Metrics')<br>
-
 ## Quick Start
 
 Metamorphosis is incredibly easy to incorporate into your application. Let's walk through the steps you'll need to take.
@@ -55,6 +50,12 @@ You're all set! You should be able to track analytics as data moves through your
 
 
 # See Metamorphosis in action using our Kafka monitor and visualizer
+Connect your Prometheus instance:
+<img alt="Connect Prometheus" src="client/assets/ip.png">
+
+You can access your metrics through our dashboards:
+<img alt="Connect Prometheus" src="client/assets/broker.png">
+
 
 ## Authors
 Metamorphosis Engineers
