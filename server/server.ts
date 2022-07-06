@@ -38,7 +38,7 @@ io.on('connection', socket => {
   console.log('client connected');  
 
   socket.on("range", range => {
-
+    
     //passing down ip using closure in the queries.js file
     query_chart(socket, ipInCache, range);
     
