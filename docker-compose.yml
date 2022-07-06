@@ -11,7 +11,7 @@ services:
     ports:
       - "2181:2181"
     volumes:
-      - /Users/jchen/Documents/GitHub/test-kafka/zk:/bitnami/kafka
+      - /path/to/zk:/bitnami/kafka
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
     networks:
@@ -22,7 +22,7 @@ services:
       - "9093:9093"
       - "1234:1234"
     volumes:
-      - /Users/jchen/Documents/GitHub/test-kafka/kf:/bitnami
+      - /path/to/kf:/bitnami
     environment:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - METRICS_KAFKA_ENABLED=true
@@ -42,7 +42,7 @@ services:
     ports:
       - "9090:9090"
     volumes:
-      - /Users/jchen/Documents/GitHub/test-kafka/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
+      - /path/to/prometheus/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml
     networks:
       - app-tier
 
