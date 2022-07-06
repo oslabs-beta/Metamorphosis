@@ -81,11 +81,12 @@ function query_chart(socket, ip = ipInCache, range = 15){
   // for some reason I can get default ip, but it's the entire object of ipInCache
   // I can't make it come in as ipinCache.ip 
   // so the if statement is to make it into the correct string
+  console.log('range, queries.js, line 84',range)
   if(ip instanceof Object){ip = ip.ip;}
 
   // range from socket.io is a string, converting to a number and convert it from minutes to seconds
   range = Number(range) * 60;
-  // console.log('ip', ip, range);
+  console.log('range, queries.js, line 89', ip, range);
 
   
   const endTime = Math. round((new Date()). getTime() / 1000);
@@ -98,12 +99,15 @@ function query_chart(socket, ip = ipInCache, range = 15){
     case 900:
       startTime = endTime - 900;
       step =  60;
+      break;
     case 1800:
       startTime = endTime - 1800;
       step = 120;
+      break;
     case 3600:
       startTime = endTime - 3600;
       step = 240;
+      break;
     case 21600:
       startTime = endTime - 21600;
       step = 1440;
