@@ -115,6 +115,7 @@ const ConsumerDisplay = () => {
 	return (
 		
 		<div className='dashboard'>
+			<h1>Consumer Dashboard</h1>
 			<Grid container spacing={2}>
 				<Grid item xs={6}>
 					<LineGraph graphProps={gl}/>

@@ -133,6 +133,7 @@ const BrokerDisplay = () => {
 	return (
 		
 		<div className='dashboard'>
+			<h1>Overview</h1>
 			<Grid container spacing={2}>
 				<Grid item xs={3}>
 				  <MetricCard data={activeBroker} normalVal={1000}/>
