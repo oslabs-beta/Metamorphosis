@@ -152,7 +152,9 @@ const BrokerDisplay = () => {
 
 	return (
 		
-		<div className='broker'>
+
+		<div className='dashboard'>
+			<h1>Overview</h1>
 			<Dropdown title = 'Select time interval' items={items}/>
 			<Grid container spacing={2}>
 				<Grid item xs={3}>

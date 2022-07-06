@@ -19,7 +19,7 @@ main{
 	display: flex;
 }
 
-.home, .login-pg, .connect, .consumer, .producer{
+.home, .login-pg, .connect{
 	display: flex;
 	height: 100vh;
 	margin-left: 20;
@@ -81,9 +81,10 @@ label{
 
 
 
-// broker directory
-.broker {
+// broker, producer, consumer directory
+.dashboard{
 	// flex-grow: 1;
 	margin: 30;
+	width: 80vw;
 }
 

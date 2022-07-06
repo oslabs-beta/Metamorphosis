@@ -4,13 +4,10 @@ import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
 import Connection from './ConnectionPage/Connection'
 import Sidebar from './Sidebar/Sidebar';
-// import Broker from './pages/Broker';
-import Consumer from './pages/Consumer';
-import Producer from './pages/Producer';
 import Broker from './BrokerDashboard/Broker';
 import Login from './LoginPage/login'
-// import consumer from './ConsumerDashboard/Consumer';
-// import producer from './ProducerDashboard/Producer';
+import Consumer from './ConsumerDashboard/Consumer';
+import Producer from './ProducerDashboard/Producer';
 
 
 
