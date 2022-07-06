@@ -4,6 +4,7 @@ import Grid from '@mui/material/Grid';
 import MetricCard from '../components/charts/MetricCard'
 import LineGraph from '../components/charts/LineGraph';
 import socket from '../socket';
+import Dropdown from '../components/Dropdown'
 
 
 const BrokerDisplay = () => {
@@ -130,9 +131,29 @@ const BrokerDisplay = () => {
 		color: 'rgba(116, 126, 234, 0.8)'
 	}
 	
+	const items = [
+		{
+			id: 1, 
+			value: '15 Minutes'
+		}, 
+		{
+			id: 2, 
+			value: '30 Minutes'
+		}, 
+		{
+			id: 3, 
+			value: '60 Minutes'
+		}, 
+		{
+			id: 4, 
+			value: '360 Minutes'
+		}
+	]
+
 	return (
 		
 		<div className='broker'>
+			<Dropdown title = 'Select time interval' items={items}/>
 			<Grid container spacing={2}>
 				<Grid item xs={3}>
 				  <MetricCard data={activeBroker} normalVal={1000}/>
