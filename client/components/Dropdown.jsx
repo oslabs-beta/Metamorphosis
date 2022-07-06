@@ -22,6 +22,24 @@ function Dropdown({title, items = [], multiSelect = false}) {
                 setSelection([...selectionAfterRemoval]);
             }
         }
+        
+        
+        if (item.id === 1) {
+            socket.emit("range", '15');
+            console.log('Emitting 1');
+        }
+        else if (item.id === 2) {
+            socket.emit("range", '30');
+            console.log('Emitting 2');
+        }
+        else if (item.id === 3) {
+            socket.emit("range", '60');
+            console.log('Emitting 3');
+        }
+        else {
+            socket.emit("range", '360');
+            console.log('Emitting 4');
+        }
         return;
     }
 
@@ -34,29 +52,29 @@ function Dropdown({title, items = [], multiSelect = false}) {
 
     function emitData(item) {
         if (item.id === 1) {
-            socket.emit("range", 15);
+            socket.emit("range", '15');
             console.log('Emitting');
         }
         else if (item.id === 2) {
-            socket.emit("range", 30);
+            socket.emit("range", '30');
             console.log('Emitting');
         }
         else if (item.id === 3) {
-            socket.emit("range", 60);
+            socket.emit("range", '60');
             console.log('Emitting');
         }
         else {
-            socket.emit("range", 360);
+            socket.emit("range", '360');
             console.log('Emitting');
         }
         return;
     }
 
-    function wrapperFunction(item) {
-        handleOnClick(item);
-        emitData(item);
-        return;
-    }
+    // function wrapperFunction(item) {
+    //     handleOnClick(item);
+    //     emitData(item);
+    //     return;
+    // }
 
     return (
         <div className='dd-wrapper'>
@@ -72,7 +90,7 @@ function Dropdown({title, items = [], multiSelect = false}) {
                     <ul className='dd-list'>
                         {items.map(item => (
                             <li className='dd-list-item' key={item.id}>
-                                <button type='button' onClick={() => wrapperFunction(item)}>
+                                <button type='button' onClick={() => handleOnClick(item)}>
                                     <span>{item.value}</span>
                                     <span>{isItemInSelection(item) && ' (Selected)'}</span>
                                 </button>
