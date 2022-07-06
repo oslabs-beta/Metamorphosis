@@ -4,10 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode=development --open --hot",
+    "start": "concurrently \"webpack-dev-server --mode=production --open --hot\" \"nodemon ./server/server/ts\"",
     "build": "webpack",
-    "server-only": "nodemon ./server/server.js",
-    "test-server": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot\" \"nodemon ./server/test-server.js\"",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot\" \"nodemon ./server/server.ts\"",
     "test": "jest --verbose"
   },
