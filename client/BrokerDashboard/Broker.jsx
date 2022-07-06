@@ -130,13 +130,6 @@ const BrokerDisplay = () => {
 		datapoints: resSend,
 		color: 'rgba(116, 126, 234, 0.8)'
 	}
-	// rgba(191, 104, 149, 0.8)
-	// rgba(234, 157, 73, 0.8)
-	// rgba(234, 93, 73, 0.8)
-	// rgba(7, 200, 176, 0.8)
-	// rgba(7, 132, 200, 0.8)
-	// rgba(116, 126, 234, 0.8)
-	// rgba(234, 116, 136, 0.8)
 	
 	const items = [
 		{
