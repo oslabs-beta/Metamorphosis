@@ -6,14 +6,6 @@ const socket = io(URL, { autoConnect: false })
 // SocketContext = createContext<Socket>(socket);
 
 socket.onAny((event, ...args) => {
-  // console.log(event, args);
 });
 
-// const SocketProvider = ({children}) => {
-//   return (
-//     <SocketContext.Provider value={socket}>{children}</SocketContext.Provider>
-//   );
-// };
-
 export default socket;
-// export { SocketContext, SocketProvider }
