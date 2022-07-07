@@ -1,8 +1,7 @@
-import express from 'express';
-import cookieParser from 'cookie-parser';
-import path from 'path';
-import axios from'axios';
-//this one when changed to import threw errors at me
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const path = require('path');
+const axios = require('axios');
 const { query, query_chart, queries, queries_count, queries_chart, ipInCache } = require('./queries');
 const { throttled_callTransport } = require('./nodemailer');
 
