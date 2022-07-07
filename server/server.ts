@@ -60,7 +60,8 @@ io.on('connection', socket => {
   })
 })
 
-app.use('/dist', express.static(path.join(__dirname, '../dist')));
+app.use('/*', express.static(path.join(__dirname,'../client/assets')));
+// app.use('/dist', express.static(path.join(__dirname, '../dist')));
 
 app.get('/', (req: Request, res: Response) => {
   console.log('connect')
