@@ -25,7 +25,7 @@ ChartJS.register(
 // const LineGraph = ({options, data}) => {
 const LineGraph = ({graphProps}) => {
   const { title, datapoints, color } = graphProps;
-  console.log(`in linegraph ${Date.now()}`, datapoints);
+
   const options = {
     animation: false,
     responsive: true,
