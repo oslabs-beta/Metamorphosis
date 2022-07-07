@@ -80,8 +80,7 @@ app.use((err: ServerError, req: Request, res: Response, next: NextFunction) => {
   res.status(500).json(errObj.error);
 });
 
-httpServer.listen(PORT, ()=>{
-  console.log(`Server listening on port: ${PORT}`)
+httpServer.listen(process.env.PORT || 3000, function(){
+  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
 });
-
 
