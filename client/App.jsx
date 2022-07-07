@@ -6,8 +6,9 @@ import Connection from './ConnectionPage/Connection'
 import Sidebar from './Sidebar/Sidebar';
 import Broker from './BrokerDashboard/Broker';
 import Login from './LoginPage/login'
-import Consumer from './ConsumerDashboard/Consumer';
 import Producer from './ProducerDashboard/Producer';
+import Consumer from './ConsumerDashBoard/Consumer';
+
 
 import main from './scss/main.scss';
 
