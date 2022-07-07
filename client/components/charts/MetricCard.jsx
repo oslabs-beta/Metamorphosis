@@ -8,7 +8,7 @@ import socket from "../../socket";
 
 const MetricCard = ({data, normalVal}) => {
   const { user } = useAuth0();
-    console.log('inMetric card', data<=normalVal);
+
     if(data.value > normalVal){
         socket.emit('alert', {to: user.email, subject: data.title});
     }
