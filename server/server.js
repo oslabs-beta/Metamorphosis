@@ -4,7 +4,6 @@ const path = require('path');
 const axios = require('axios');
 const { query, query_chart, queries, queries_count, queries_chart, ipInCache } = require('./queries');
 const { throttled_callTransport } = require('./nodemailer');
-
 import { createServer } from 'http';
 import { ServerError } from '../types';
 import { Server } from 'socket.io';
