@@ -43,7 +43,7 @@ Metamorphosis is incredibly easy to incorporate into your application. Let's wal
 
 To view your metrics, you will need to use the Metamorphosis app built in this repo or access our website directly. Follow these instructions.
 
-1. Sign into your account.
+1. Sign into your account here (metamorphosis-phi.vercel.app).
 2. Connect your Prometheus instance by providing its IP address and PORT. This allows Metamorphosis to access the exposed Kafka metrics and send them to our UI.
 
 You're all set! You should be able to track analytics as data moves through your Kafka application, and make vital decisions about your system.
