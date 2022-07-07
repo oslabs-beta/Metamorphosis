@@ -9,8 +9,6 @@ import Login from './LoginPage/login'
 import Consumer from './ConsumerDashboard/Consumer';
 import Producer from './ProducerDashboard/Producer';
 
-
-
 import main from './scss/main.scss';
 
 const App = () => {

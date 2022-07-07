@@ -2,7 +2,8 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Dotenv = require('dotenv-webpack');
+// const Dotenv = require('dotenv-webpack');
+require('dotenv').config();
 
 module.exports = {
   entry: [
@@ -95,7 +96,13 @@ module.exports = {
       template: './index.html',
       favicon: "./public/images/favicon.ico",
     }),
-    new Dotenv(),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'REACT_APP_AUTH0_DOMAIN': JSON.stringify(process.env.REACT_APP_AUTH0_DOMAIN),
+        'REACT_APP_AUTH0_CLIENTID': JSON.stringify(process.env.REACT_APP_AUTH0_CLIENTID)
+      }
+    })
+    // new Dotenv({ systemvars: true }),
   ],
   resolve: {
     // Enable importing JS / JSX files without specifying their extension
