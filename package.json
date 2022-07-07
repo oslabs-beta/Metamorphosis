@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently \"webpack-dev-server --mode=production --open --hot\" \"nodemon ./server/server/ts\"",
+    "start": "node index.js",
     "build": "webpack",
     "dev": "concurrently \"cross-env NODE_ENV=development webpack-dev-server --open --hot\" \"nodemon ./server/server.ts\"",
     "test": "jest --verbose"

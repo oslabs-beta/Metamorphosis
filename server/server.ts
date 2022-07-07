@@ -10,7 +10,6 @@ import { createServer } from 'http';
 import { ServerError } from '../types';
 import { Server } from 'socket.io';
 import socket from '../client/socket';
-const PORT = 3000;
 const app = express(); 
 const httpServer = createServer(app);
 const io = new Server<ClientToServerEvents, ServerToClientEvents>(httpServer, {
