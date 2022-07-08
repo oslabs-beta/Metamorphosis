@@ -69,7 +69,7 @@ if(process.env.LOCALMODE){
         console.log('nodemailer error');
         return process.exit(1);
       }
-      console.log('success!');
+      console.log('re-route alert to backend - success!');
       console.log(nodemailer.getTestMessageUrl(info));
       transporter.close();
     })
