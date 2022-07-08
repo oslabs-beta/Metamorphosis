@@ -14,8 +14,12 @@ import { useAuth0 } from '@auth0/auth0-react';
 
 const Sidebar = ({children}) => {
 const[isOpen ,setIsOpen] = useState(true);
-let { isAuthenticated } = useAuth0();
-if(process.env.NODE_ENV != 'production')isAuthenticated = true;
+let isAuthenticated; 
+if(!process.env.LOCALMODE){
+  isAuthenticated = true;
+} else {
+  isAuthenticated = useAuth0().isAuthenticated;
+}
 const toggle = () => setIsOpen (!isOpen);
 
 return (

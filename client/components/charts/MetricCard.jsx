@@ -8,7 +8,7 @@ import socket from "../../socket";
 
 const MetricCard = ({data, normalVal}) => {
   let { user } = useAuth0();
-  if(process.env.NODE_ENV != 'production'){
+  if(!process.env.LOCALMODE){
       user = {email: 'sonia.schinner85@ethereal.email'}
     };
 

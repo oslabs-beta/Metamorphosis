@@ -15,11 +15,11 @@ import main from './scss/main.scss';
 const App = () => {
 
   let { isAuthenticated } = useAuth0();
-  if(process.env.NODE_ENV != 'production'){isAuthenticated = true;}
+  if(!process.env.LOCALMODE){isAuthenticated = true;}
   return (
     <>
     {
-    process.env.NODE_ENV == 'production'
+    process.env.LOCALMODE
     ?
     <Router>
       <Auth0Provider

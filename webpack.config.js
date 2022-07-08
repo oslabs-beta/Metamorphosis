@@ -101,7 +101,7 @@ module.exports = {
       'process.env': {
         'REACT_APP_AUTH0_DOMAIN': JSON.stringify(process.env.REACT_APP_AUTH0_DOMAIN),
         'REACT_APP_AUTH0_CLIENTID': JSON.stringify(process.env.REACT_APP_AUTH0_CLIENTID),
-        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
+        'LOCALMODE': JSON.stringify(process.env.LOCALMODE)
       }
     })
     // new Dotenv({ systemvars: true }),

@@ -35,7 +35,7 @@ function throttle(func, delay){
 }
 // console.log('check processenv',process.env.NODE_ENV);
 let throttled_callTransport;
-if(process.env.NODE_ENV=='production'){
+if(process.env.LOCALMODE){
   const callSendGrid = (message) => {
     sgMail
     .send(messageCreator(message))
