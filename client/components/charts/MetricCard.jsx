@@ -7,7 +7,10 @@ import socket from "../../socket";
 
 
 const MetricCard = ({data, normalVal}) => {
-  const { user } = useAuth0();
+  let { user } = useAuth0();
+  if(!process.env.LOCALMODE){
+      user = {email: 'sonia.schinner85@ethereal.email'}
+    };
 
     if(data.value > normalVal){
         socket.emit('alert', {to: user.email, subject: data.title});

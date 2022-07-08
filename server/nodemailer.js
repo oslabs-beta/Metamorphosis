@@ -35,7 +35,7 @@ function throttle(func, delay){
 }
 // console.log('check processenv',process.env.NODE_ENV);
 let throttled_callTransport;
-if(process.env.NODE_ENV=='production'){
+if(process.env.LOCALMODE){
   const callSendGrid = (message) => {
     sgMail
     .send(messageCreator(message))
@@ -69,7 +69,7 @@ if(process.env.NODE_ENV=='production'){
         console.log('nodemailer error');
         return process.exit(1);
       }
-      console.log('success!');
+      console.log('re-route alert to backend - success!');
       console.log(nodemailer.getTestMessageUrl(info));
       transporter.close();
     })
