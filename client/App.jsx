@@ -14,9 +14,13 @@ import main from './scss/main.scss';
 
 const App = () => {
 
-  const { isAuthenticated } = useAuth0();
-
+  let { isAuthenticated } = useAuth0();
+  if(process.env.NODE_ENV != 'production'){isAuthenticated = true;}
   return (
+    <>
+    {
+    process.env.NODE_ENV == 'production'
+    ?
     <Router>
       <Auth0Provider
       domain={process.env.REACT_APP_AUTH0_DOMAIN}
@@ -35,6 +39,21 @@ const App = () => {
     </Auth0Provider>
       
     </Router>
+    :
+    <Router>
+      <Sidebar>
+        <Routes>
+          <Route path="/" element={<Connection/>}/> 
+          <Route path="/connect" element={ <Connection/> }/>  
+          <Route path="/broker" element={ <Broker/> }/> 
+          <Route path="/producer" element={ <Producer /> }/> 
+          <Route path="/consumer" element={ <Consumer /> }/> 
+        </Routes>
+      </Sidebar>
+      
+    </Router>
+    }
+    </>
   );
 };
 

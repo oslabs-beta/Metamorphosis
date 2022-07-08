@@ -2,6 +2,7 @@
 const webpack = require('webpack');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { NoEncryption } = require('@mui/icons-material');
 // const Dotenv = require('dotenv-webpack');
 require('dotenv').config();
 
@@ -10,13 +11,13 @@ module.exports = {
     // entry point of our app
     './client/index.js',
   ],
+  mode: 'none',
   output: {
     path: path.join(__dirname, '/dist'),
     filename: 'bundle.js',
     // publicPath: '/'
   },
   devtool: 'eval-source-map',
-  mode: 'development',
   devServer: {
     host: 'localhost',
     port: 8080,
@@ -99,7 +100,8 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'REACT_APP_AUTH0_DOMAIN': JSON.stringify(process.env.REACT_APP_AUTH0_DOMAIN),
-        'REACT_APP_AUTH0_CLIENTID': JSON.stringify(process.env.REACT_APP_AUTH0_CLIENTID)
+        'REACT_APP_AUTH0_CLIENTID': JSON.stringify(process.env.REACT_APP_AUTH0_CLIENTID),
+        'NODE_ENV': JSON.stringify(process.env.NODE_ENV)
       }
     })
     // new Dotenv({ systemvars: true }),
