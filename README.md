@@ -33,7 +33,7 @@ Metamorphosis is a monitoring and visualization tool for your Kafka cluster that
 
 Metamorphosis is incredibly easy to incorporate into your application. Let's walk through the steps you'll need to take.
 
-1. Clone this repo (https://github.com/oslabs-beta/Metamorphosis.git)
+1. Clone this repo (https://github.com/oslabs-beta/Metamorphosis.git) loginBaseOnEnvironments branch. This branch allows you to interact with the app locally without going through OAuth.
 2. Cd into Metamorphosis
 3. Start the application with npm start
 4. Navigate to localhost:8080
