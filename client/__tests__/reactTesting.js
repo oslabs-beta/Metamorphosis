@@ -1,22 +1,9 @@
-// /**
-//  * @jest-environment node 
-//  */
-// // import dependencies
-// import React from 'React'
-// // import API mocking utilities from Mock Service Worker
-// // import {rest} from 'msw'
-// // import {setupServer} from 'msw/node'
-// // import react-testing methods
-// import {render, fireEvent, waitFor, screen} from '@testing-library/react'
-// // add custom jest matchers from jest-dom
-// import '@testing-library/jest-dom'
-// // the component to test
-// import Connection from '../ConnectionPage/Connection.tsx'
 
 import React from 'React';
-import { Provider } from 'react-redux';
 import userEvent from '@testing-library/user-event';
 import { render, screen, waitFor } from '@testing-library/react';
+import '@testing-library/jest-dom'
+import Fetch from './fetch'
 import regeneratorRuntime from 'regenerator-runtime';
 
 import App from '../App';
@@ -47,7 +34,7 @@ React-redux integration tests
 */
 
 describe('Unit testing React components', () => {
-  describe('ConnectionPage', ()=> {
+  describe('Loads and displays connectionPage', ()=> {
     let container;
 
     beforeAll(() => {
@@ -57,12 +44,28 @@ describe('Unit testing React components', () => {
     //should render 2 input fields, one for ip address, one for port
     test('Render input fields', ()=> {
         expect(container.getElementsByClassName('ip-input')).toBeInTheDocument();
+        expect(container.getElementsByClassName('port-input')).toBeInTheDocument();
     })
 
     //should render connect button
     test('Render button', ()=> {
-
+        expect(container.getElementsByClassName('connect-form-btn')).toBeInTheDocument();
     })
+
+    it("should not show an error when the component is first loaded", ()=> {
+        const alertEl = screen.getByRole("alert");
+        expect(alertEl).not.toBeInTheDocument();
+    })
+
+    it("should show error message when all fields are not entered", async ()=> {
+        const button = container.getElementsByClassName('connect-form-btn');
+        await userEvent.click(button);
+        screen.debug();
+
+        const alertEl = screen.getByRole("alert");
+        expect(alertEl).toBeInTheDocument();
+    })
+
   });
 
   describe('Metric Card', ()=> {
@@ -78,6 +81,8 @@ describe('Unit testing React components', () => {
     beforeAll(() => {
         container = render(<MetricCard />);
     })
+
+
 
     //check that title of card is matching
     test('Render passed-in text', ()=> {
