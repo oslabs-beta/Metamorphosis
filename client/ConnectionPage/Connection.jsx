@@ -5,6 +5,7 @@ import socket from '../socket';
 // import { SocketContext } from '../socket';
 
 const Connection = () => {
+  
   const dispatch = useDispatch();
   const ip = useSelector(selectIpaddress);
   // const socket = useContext(SocketContext);
@@ -30,6 +31,8 @@ const Connection = () => {
       return block.every(el => {
         return parseInt(el,10) >=0 && parseInt(el,10) <= 255;
       })
+    } else if (block == 'localhost' && !process.env.LOCALMODE){
+      return block;
     }
     return false;
   }
