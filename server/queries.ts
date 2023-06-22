@@ -153,12 +153,12 @@
 const axios = require('axios');
 
 interface QueriesCount {
-  kafka_cluster_partition_insyncreplicascount: Array<number>,
-  kafka_cluster_partition_underreplicated: Array<number>,
-  kafka_controller_kafkacontroller_offlinepartitionscount: Array<number>,
-  kafka_network_requestmetrics_requestbytes_count: Array<number>,
-  kafka_controller_kafkacontroller_activebrokercount: Array<number>,
-  kafka_controller_kafkacontroller_activecontrollercount: Array<number>,
+  kafka_cluster_partition_insyncreplicascount: Array<Object>, 
+  kafka_cluster_partition_underreplicated: Array<Object>,
+  kafka_controller_kafkacontroller_offlinepartitionscount: Array<Object>,
+  kafka_network_requestmetrics_requestbytes_count: Array<Object>,
+  kafka_controller_kafkacontroller_activebrokercount: Array<Object>,
+  kafka_controller_kafkacontroller_activecontrollercount: Array<Object>,
 }
 
 const queries_count: QueriesCount = {
@@ -188,7 +188,7 @@ interface QueriesChart {
   kafka_consumergroup_group_lag: Object,
   kafka_consumer_consumer_coordinator_metrics_rebalance_total: Object,
   kafka_producer_producer_metrics_io_ratio: Object,
-  kafka_producer_producer_metrics_record_error_rate: Object 
+  kafka_producer_producer_metrics_record_error_rate: Object,
 }
 
 const queries_chart: QueriesChart = {
@@ -229,11 +229,11 @@ function query_count(socket: any, ip: string) {
       params: {
         query: key,
       }})
-      .then(res =>{
+      .then((res: any) =>{
         // console.log('query_count/received data: ',res.data);
         return res.data;
       }) 
-      .then(res => {
+      .then((res: any) => {
         // console.log('length of the data: ', res.data.result.length);
         let retrieved_data : Object[] = [];
         type metrics = {
@@ -256,11 +256,11 @@ function query_count(socket: any, ip: string) {
           obj.value = x.value[1];
           retrieved_data.push(obj);
         });  
-        queries_count[key] = retrieved_data;
+        queries_count[key as keyof QueriesCount] = retrieved_data;
         queries = {...queries_count, ...queries_chart};
         socket.emit("data", queries);
       })
-      .catch(err => console.log('queries.js line 71',err.code))
+      .catch((err: any) => console.log('queries.js line 71',err.code))
   };
 };
 
@@ -307,17 +307,23 @@ function query_chart(socket: any, ip: any = ipInCache, range: number = 15) {
         end: endTime,
         step: step,
       }})
-      .then(res =>{
+      .then((res: any) =>{
         // console.log('query_count/received data: ',res.data);
         return res.data;
       }) 
-      .then(res => {
+      .then((res: any) => {
         let retrieved_data : Object[] = [];
-        res.data.result.forEach(el => {
-          const obj = {};
+        const obj = {
+          metric: '',
+          output: {
+            x: [1],
+            y: [1]
+          }
+        };
+        res.data.result.forEach((el:any) => { 
           // same question as in query_count, only grabbing metrics for now
-          obj['metric'] = el.metric;
-          obj['output'] = {x:[], y:[]};
+          obj.metric = el.metric;
+          obj.output = {x:[], y:[]};
           for (let i = 0; i < el.values.length; i++){
             obj['output']['x'].push(el.values[i][0]);
             obj['output']['y'].push(Number(el.values[i][1]));
@@ -325,11 +331,11 @@ function query_chart(socket: any, ip: any = ipInCache, range: number = 15) {
           // console.log('obj structure', obj)
           retrieved_data.push(obj);
         });  
-        queries_chart[key] = retrieved_data;
+        queries_chart[key as keyof QueriesChart] = retrieved_data; 
         queries = {...queries_count, ...queries_chart};
         socket.emit("data", queries);
       })
-      .catch(err => console.log(err.code))
+      .catch((err: any) => console.log(err.code))
   };
 };
 
