@@ -18,6 +18,8 @@ interface SidebarItem {
   icon: React.ReactNode;
 }
 
+import NotificationsIcon from '@mui/icons-material/Notifications';
+
 const sidebarItems: SidebarItem[] = [
   {
     title: 'Connect',
@@ -38,6 +40,11 @@ const sidebarItems: SidebarItem[] = [
     title: 'Consumer',
     path: '/consumer',
     icon: <MoveToInboxIcon />,
+  },
+  {
+    title: 'Alerts',
+    path: '/alerts',
+    icon: <NotificationsIcon />,
   },
 ];
 

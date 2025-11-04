@@ -8,7 +8,24 @@ import { throttledSendEmail } from './lib/alerts/email';
 
 // Initialize email transporter
 import { initializeEmailTransporter } from './lib/alerts/email';
+import { getAlertWorker } from './lib/alerts/alertWorker';
+import { initializeDatabase } from './lib/metrics/ingestion';
+
 initializeEmailTransporter();
+
+// Initialize database connection
+if (process.env.DATABASE_URL || process.env.DB_HOST) {
+  try {
+    initializeDatabase();
+    console.log('Database connection initialized');
+  } catch (error) {
+    console.warn('Database initialization failed (continuing without historical storage):', error);
+  }
+}
+
+// Start alert worker
+const alertWorker = getAlertWorker();
+alertWorker.start(30000); // Check every 30 seconds
 
 const dev = process.env.NODE_ENV !== 'production';
 const hostname = 'localhost';

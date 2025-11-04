@@ -148,7 +148,24 @@ const BrokerPage: React.FC = () => {
 
   return (
     <div className="dashboard">
-      <h1>Overview</h1>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
+        <h1>Overview</h1>
+        <a href="/broker/metrics" style={{ textDecoration: 'none' }}>
+          <button
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#1976d2',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
+          >
+            View Detailed Broker Metrics
+          </button>
+        </a>
+      </div>
       <Dropdown title="Select time interval" items={items} />
       <Grid container spacing={2}>
         <Grid item xs={3}>
