@@ -55,6 +55,23 @@ const ConsumerPage: React.FC = () => {
   return (
     <div className="dashboard">
       <h1>Consumer Dashboard</h1>
+      <div style={{ marginBottom: '20px' }}>
+        <a href="/consumer/lag" style={{ textDecoration: 'none' }}>
+          <button
+            style={{
+              padding: '10px 20px',
+              backgroundColor: '#1976d2',
+              color: 'white',
+              border: 'none',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '14px',
+            }}
+          >
+            View Consumer Lag Heatmap
+          </button>
+        </a>
+      </div>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <LineGraph graphProps={gl} />
