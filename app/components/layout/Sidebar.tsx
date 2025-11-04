@@ -11,6 +11,7 @@ import CompassCalibrationIcon from '@mui/icons-material/CompassCalibration';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Image from 'next/image';
+import ThemeToggle from '../Theme/ThemeToggle';
 
 interface SidebarItem {
   title: string;
@@ -73,9 +74,10 @@ const Sidebar: React.FC<SidebarProps> = ({ children, isAuthenticated = true }) =
             />
           )}
           <div
-            style={{ marginLeft: isOpen ? '50px' : '0px' }}
+            style={{ marginLeft: isOpen ? '50px' : '0px', display: 'flex', alignItems: 'center', gap: '10px' }}
             className="collapse-icon"
           >
+            <ThemeToggle />
             {isOpen ? (
               <ArrowBackIosIcon onClick={toggle} />
             ) : (

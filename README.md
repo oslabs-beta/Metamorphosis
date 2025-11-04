@@ -263,6 +263,9 @@ We welcome contributions! Please feel free to fork, clone, and help Metamorphosi
 
 - **Blog Post**: [How we improved Kafka observability with Metamorphosis](https://medium.com/@jchen1114/kafka-monitoring-with-metamorphosis-9c37ad106ea)
 - **Original Project**: [oslabs-beta/Metamorphosis](https://github.com/oslabs-beta/Metamorphosis)
+- **Changelog**: See [CHANGELOG.md](./CHANGELOG.md) for detailed version history
+- **Plugin Development**: See [docs/PLUGINS.md](./docs/PLUGINS.md) for plugin development guide
+- **Implementation Status**: See [IMPLEMENTATION_STATUS.md](./IMPLEMENTATION_STATUS.md) for current feature completion status
 
 ## License
 Released under the MIT License

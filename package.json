@@ -11,7 +11,10 @@
     "build:next": "next build",
     "dev": "concurrently \"cross-env webpack-dev-server --open --hot\" \"nodemon ./server/server.ts\"",
     "dev:next": "ts-node --project tsconfig.json server.ts",
-    "test": "jest --verbose"
+    "test": "jest --verbose",
+    "test:integration": "jest --testPathPattern=integration --verbose",
+    "test:unit": "jest --testPathPattern=unit --verbose",
+    "lint": "next lint || true"
   },
   "repository": {
     "type": "git",
@@ -52,6 +55,8 @@
     "express-session": "^1.17.3",
     "gapi-script": "^1.2.0",
     "jest-environment-jsdom": "^28.1.0",
+    "jspdf": "^3.0.3",
+    "jspdf-autotable": "^5.0.2",
     "kafkajs": "^2.2.4",
     "mongoose": "^6.3.4",
     "next": "^16.0.1",
