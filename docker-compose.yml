@@ -1,0 +1,137 @@
+version: "3.8"
+
+networks:
+  app-tier:
+    driver: bridge
+
+services:
+  zookeeper:
+    image: docker.io/bitnami/zookeeper:latest
+    ports:
+      - "2181:2181"
+    volumes:
+      - zookeeper_data:/bitnami/zookeeper
+    environment:
+      - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - app-tier
+    healthcheck:
+      test: ["CMD", "nc", "-z", "localhost", "2181"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  kafka:
+    image: docker.io/bitnami/kafka:latest
+    ports:
+      - "9092:9092"
+      - "9093:9093"
+      - "1234:1234"
+    volumes:
+      - kafka_data:/bitnami/kafka
+      - ./example/config.yml:/bitnami/jmx/config.yml:ro
+    environment:
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - METRICS_KAFKA_ENABLED=true
+      - KAFKA_JMX_OPTS=-javaagent:/opt/bitnami/kafka/jmx/jmx_prometheus_javaagent.jar=1234:/bitnami/jmx/config.yml
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:9093
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:9093
+    depends_on:
+      zookeeper:
+        condition: service_healthy
+    networks:
+      - app-tier
+    healthcheck:
+      test: ["CMD", "kafka-broker-api-versions.sh", "--bootstrap-server", "localhost:9092"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+
+  prometheus:
+    image: docker.io/bitnami/prometheus:latest
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./example/prometheus.yml:/opt/bitnami/prometheus/conf/prometheus.yml:ro
+      - prometheus_data:/opt/bitnami/prometheus/data
+    command:
+      - '--config.file=/opt/bitnami/prometheus/conf/prometheus.yml'
+      - '--storage.tsdb.path=/opt/bitnami/prometheus/data'
+      - '--web.console.libraries=/opt/bitnami/prometheus/console_libraries'
+      - '--web.console.templates=/opt/bitnami/prometheus/consoles'
+      - '--web.enable-lifecycle'
+    networks:
+      - app-tier
+    depends_on:
+      - kafka
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:9090/-/healthy"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # TimescaleDB for historical metrics storage
+  timescaledb:
+    image: timescale/timescaledb:latest-pg15
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=metamorphosis
+      - POSTGRES_USER=metamorphosis
+      - POSTGRES_PASSWORD=metamorphosis
+    volumes:
+      - timescaledb_data:/var/lib/postgresql/data
+    networks:
+      - app-tier
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U metamorphosis"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Metamorphosis Observability Platform
+  metamorphosis:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - PROMETHEUS_URL=http://prometheus:9090
+      - DATABASE_URL=postgresql://metamorphosis:metamorphosis@timescaledb:5432/metamorphosis
+      - KAFKA_BROKERS=kafka:9092
+      - NEXT_PUBLIC_SOCKET_URL=http://localhost:3000
+    volumes:
+      - ./public:/app/public:ro
+      - ./.next:/app/.next
+    depends_on:
+      prometheus:
+        condition: service_healthy
+      timescaledb:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    networks:
+      - app-tier
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  timescaledb_data:
+    driver: local
+

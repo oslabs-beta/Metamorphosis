@@ -1,0 +1,17 @@
+apiVersion: v2
+name: metamorphosis
+description: A Helm chart for Metamorphosis Kafka Observability Platform
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - kafka
+  - monitoring
+  - observability
+  - prometheus
+maintainers:
+  - name: Metamorphosis Team
+home: https://github.com/oslabs-beta/Metamorphosis
+sources:
+  - https://github.com/oslabs-beta/Metamorphosis
+

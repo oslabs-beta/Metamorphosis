@@ -1,0 +1,85 @@
+replicaCount: 1
+
+image:
+  repository: metamorphosis/metamorphosis
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: {}
+
+securityContext: {}
+
+service:
+  type: ClusterIP
+  port: 3000
+
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+  hosts:
+    - host: metamorphosis.local
+      paths:
+        - path: /
+          pathType: Prefix
+  tls: []
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 10
+  targetCPUUtilizationPercentage: 80
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+env:
+  - name: NODE_ENV
+    value: "production"
+  - name: PORT
+    value: "3000"
+  - name: PROMETHEUS_URL
+    value: "http://prometheus:9090"
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: metamorphosis-db-secret
+        key: database-url
+
+database:
+  enabled: true
+  type: postgresql
+  host: timescaledb
+  port: 5432
+  database: metamorphosis
+  user: metamorphosis
+  password: metamorphosis
+
+prometheus:
+  url: "http://prometheus:9090"
+
+kafka:
+  brokers: "kafka:9092"
+

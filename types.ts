@@ -19,3 +19,35 @@ export interface GraphProp {
 export type ServerError = {
     error: string 
 }
+
+export interface AlertRule {
+  id: string;
+  name: string;
+  metric: string;
+  threshold: number;
+  operator: 'gt' | 'lt' | 'eq' | 'gte' | 'lte';
+  duration: number; // seconds
+  enabled: boolean;
+  notificationChannels: string[];
+}
+
+export interface AlertEvent {
+  id: string;
+  ruleId: string;
+  status: 'firing' | 'resolved';
+  value: number;
+  timestamp: number;
+  resolvedAt?: number;
+}
+
+export interface MetricDataPoint {
+  timestamp: number;
+  value: number;
+  labels?: Record<string, string>;
+}
+
+export interface TimeSeriesData {
+  metric: string;
+  labels: Record<string, string>;
+  datapoints: MetricDataPoint[];
+}
