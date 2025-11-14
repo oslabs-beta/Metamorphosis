@@ -13,14 +13,19 @@ import { initializeDatabase } from './lib/metrics/ingestion';
 
 initializeEmailTransporter();
 
-// Initialize database connection
+// Initialize database connection (async, don't block server startup)
 if (process.env.DATABASE_URL || process.env.DB_HOST) {
-  try {
-    initializeDatabase();
-    console.log('Database connection initialized');
-  } catch (error) {
-    console.warn('Database initialization failed (continuing without historical storage):', error);
-  }
+  (async () => {
+    try {
+      const pool = initializeDatabase();
+      // Test connection
+      const client = await pool.connect();
+      client.release();
+      console.log('Database connection initialized');
+    } catch (error: any) {
+      console.warn('Database initialization failed (continuing without historical storage):', error.message || error);
+    }
+  })();
 }
 
 // Start alert worker

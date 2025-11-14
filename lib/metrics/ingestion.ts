@@ -1,5 +1,5 @@
 import { Pool } from 'pg';
-import { MetricDataPoint, TimeSeriesData } from '@/types';
+import { MetricDataPoint, TimeSeriesData } from '../../types';
 
 let dbPool: Pool | null = null;
 
@@ -16,8 +16,15 @@ export function initializeDatabase(): Pool {
       connectionTimeoutMillis: 2000,
     });
 
-    // Create tables if they don't exist
-    createTables(dbPool);
+    // Handle connection errors
+    dbPool.on('error', (err) => {
+      console.error('Unexpected error on idle database client', err);
+    });
+
+    // Create tables if they don't exist (async, don't block)
+    createTables(dbPool).catch((err) => {
+      console.warn('Failed to create database tables:', err.message);
+    });
   }
 
   return dbPool;
@@ -194,7 +201,7 @@ export async function queryHistoricalMetrics(
 
     const result = await client.query(query, params);
 
-    return result.rows.map((row) => ({
+    return result.rows.map((row: any) => ({
       timestamp: Number(row.timestamp),
       value: parseFloat(row.value),
       labels: row.labels || {},

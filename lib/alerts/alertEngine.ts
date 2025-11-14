@@ -1,4 +1,4 @@
-import { AlertRule, AlertEvent } from '@/types';
+import { AlertRule, AlertEvent } from '../../types';
 
 export interface MetricValue {
   metric: string;

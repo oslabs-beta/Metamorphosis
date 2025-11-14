@@ -1,6 +1,6 @@
 import { getAlertEngine, MetricValue, AlertEvaluationResult } from './alertEngine';
 import { throttledSendEmail } from './email';
-import { AlertRule } from '@/types';
+import { AlertRule } from '../../types';
 
 interface NotificationChannel {
   type: 'email' | 'slack' | 'webhook';

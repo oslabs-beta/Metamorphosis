@@ -2,14 +2,9 @@ import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
   output: 'standalone', // For Docker deployment
   images: {
     domains: [],
-  },
-  // Enable experimental features for App Router
-  experimental: {
-    serverActions: true,
   },
   // Transpile packages that may not be compatible with Next.js
   transpilePackages: ['@mui/material', '@mui/icons-material'],

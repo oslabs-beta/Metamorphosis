@@ -66,7 +66,7 @@ const Sidebar: React.FC<SidebarProps> = ({ children, isAuthenticated = true }) =
         <div className="nav-header">
           {isOpen && (
             <Image
-              src="/images/logo.png"
+              src="/assets/logo.png"
               alt="logo"
               width={100}
               height={40}

@@ -1,5 +1,5 @@
-// Re-export existing types
-export * from '../types';
+// Re-export plugin types
+export * from './plugin';
 
 // Additional types for Next.js and observability platform
 export interface KafkaCluster {
