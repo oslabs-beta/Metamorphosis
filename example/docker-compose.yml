@@ -7,7 +7,7 @@ networks:
 services:
 
   zookeeper:
-    image: docker.io/bitnami/zookeeper:latest
+    image: docker.io/soldevelo/zookeeper:latest
     ports:
       - "2181:2181"
     volumes:
@@ -17,7 +17,7 @@ services:
     networks:
       - app-tier
   kafka:
-    image: docker.io/bitnami/kafka:latest
+    image: docker.io/soldevelo/kafka:3.9
     ports:
       - "9093:9093"
       - "1234:1234"
@@ -38,7 +38,7 @@ services:
       - app-tier
 
   prometheus:
-    image: docker.io/bitnami/prometheus:latest
+    image: docker.io/soldevelo/prometheus:latest
     ports:
       - "9090:9090"
     volumes:
